@@ -1,4 +1,4 @@
-package electroec.controller;
+package com.example.electroec.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
