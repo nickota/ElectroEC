@@ -88,7 +88,7 @@ CREATE TABLE products
 	name varchar(255) NOT NULL COMMENT 'name',
 	category_id int NOT NULL COMMENT 'category_id',
 	description text COMMENT 'description',
-	price int NOT NULL COMMENT 'price',
+	price double(12,2) NOT NULL COMMENT 'price',
 	brand_id int COMMENT 'brand_id',
 	status int DEFAULT 1 NOT NULL COMMENT 'status',
 	rating int(3) DEFAULT 0 COMMENT 'rating',
