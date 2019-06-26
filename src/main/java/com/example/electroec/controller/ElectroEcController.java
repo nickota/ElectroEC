@@ -12,6 +12,11 @@ public class ElectroEcController {
 		return "index";
 	}
 
+	@RequestMapping("/store")
+	public String store() {
+		return "store";
+	}
+	
 	@RequestMapping("/")
 	public String home(Model model) {
 		return "redirect:index";
