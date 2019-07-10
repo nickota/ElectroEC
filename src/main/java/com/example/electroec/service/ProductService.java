@@ -1,5 +1,7 @@
 package com.example.electroec.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +17,9 @@ public class ProductService {
 	public Iterable<Products> findAll() {
 		return productRepository.findAll();
 	}
+
+	public Optional<Products> findBySerialNum(String serialNum) {
+		return productRepository.findById(serialNum);
+	}
+
 }
