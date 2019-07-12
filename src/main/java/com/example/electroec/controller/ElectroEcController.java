@@ -33,21 +33,4 @@ public class ElectroEcController {
 		model.addAttribute("product", product);
 		return "product";
 	}
-
-	// public String index() {
-//		return "index";
-//	}
-
-//	@RequestMapping("/store")
-//	public List<Products> get() {
-//		return productRepository.findAll();
-//	}
-	// public String store() {
-//		return "store";
-//	}
-
-//	@RequestMapping("/")
-//	public String home(Model model) {
-//		return "redirect:index";
-//	}
 }
