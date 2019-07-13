@@ -18,9 +18,17 @@ public class ElectroEcController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping(path = "/store")
+	@RequestMapping(path = "/")
 	@GetMapping
 	public String index(Model model) {
+		Iterable<Products> products = productService.findAll();
+		model.addAttribute("products", products);
+		return "index";
+	}
+
+	@RequestMapping(path = "/store")
+	@GetMapping
+	public String store(Model model) {
 		Iterable<Products> products = productService.findAll();
 		model.addAttribute("products", products);
 		return "store";
@@ -28,7 +36,7 @@ public class ElectroEcController {
 
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
-	public String getproduct(Model model, @PathVariable String serialNum) {
+	public String getproduct(Model model, @PathVariable("serialNum") String serialNum) {
 		Optional<Products> product = productService.findBySerialNum(serialNum);
 		model.addAttribute("product", product);
 		return "product";
