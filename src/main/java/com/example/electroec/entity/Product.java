@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="products")
-public class Products implements Serializable {
+public class Product implements Serializable {
 
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -60,7 +60,7 @@ public class Products implements Serializable {
 	/**
 	 * コンストラクタ.
 	 */
-	public Products() {
+	public Product() {
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class Products implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Products other = (Products) obj;
+		Product other = (Product) obj;
 		if (serialNum == null) {
 			if (other.serialNum != null) {
 				return false;

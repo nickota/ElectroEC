@@ -1,15 +1,12 @@
 package com.example.electroec.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.electroec.entity.Products;
+import com.example.electroec.entity.Product;
 import com.example.electroec.service.ProductService;
 
 @Controller
@@ -21,7 +18,7 @@ public class ElectroEcController {
 	@RequestMapping(path = "/")
 	@GetMapping
 	public String index(Model model) {
-		Iterable<Products> products = productService.findAll();
+		Iterable<Product> products = productService.findAll();
 		model.addAttribute("products", products);
 		return "index";
 	}
@@ -29,16 +26,17 @@ public class ElectroEcController {
 	@RequestMapping(path = "/store")
 	@GetMapping
 	public String store(Model model) {
-		Iterable<Products> products = productService.findAll();
+		Iterable<Product> products = productService.findAll();
 		model.addAttribute("products", products);
 		return "store";
 	}
 
-	@RequestMapping(path = "/product/{serialNum}")
-	@GetMapping
-	public String getproduct(Model model, @PathVariable("serialNum") String serialNum) {
-		Optional<Products> product = productService.findBySerialNum(serialNum);
-		model.addAttribute("product", product);
-		return "product";
-	}
+//	@RequestMapping(path = "/product/{serialNum}")
+//	@GetMapping
+//	public String getproduct(Model model, @PathVariable String serialNum) {
+//		Optional<Products> product = productService.findBySerialNum(serialNum);
+//		model.addAttribute("product", product);
+//		return "product";
+//	}
+
 }

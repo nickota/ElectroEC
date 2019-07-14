@@ -2,8 +2,8 @@ package com.example.electroec.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.electroec.entity.Products;
+import com.example.electroec.entity.Product;
 
-public interface ProductRepository extends CrudRepository<Products, String> {
+public interface ProductRepository extends CrudRepository<Product, String> {
 
 }
