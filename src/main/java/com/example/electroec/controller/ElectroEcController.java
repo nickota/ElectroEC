@@ -20,7 +20,7 @@ public class ElectroEcController {
 	public String index(Model model) {
 		Iterable<Product> products = productService.findAll();
 		model.addAttribute("products", products);
-		return "index";
+		return "top";
 	}
 
 	@RequestMapping(path = "/store")
