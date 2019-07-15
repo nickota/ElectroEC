@@ -1,5 +1,7 @@
 package com.example.electroec.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,12 +33,13 @@ public class ElectroEcController {
 		return "store";
 	}
 
-//	@RequestMapping(path = "/product/{serialNum}")
-//	@GetMapping
-//	public String getproduct(Model model, @PathVariable String serialNum) {
-//		Optional<Products> product = productService.findBySerialNum(serialNum);
-//		model.addAttribute("product", product);
-//		return "product";
-//	}
+	@RequestMapping(path = "/product/a")
+	@GetMapping
+	public String getproduct(Model model) {
+		String serialNum = "PC0001";
+		Optional<Product> product = productService.findBySerialNum(serialNum);
+		model.addAttribute("product", product);
+		return "product";
+	}
 
 }
