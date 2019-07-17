@@ -35,11 +35,11 @@ public class ElectroEcController {
 
 	@RequestMapping(path = "/product/a")
 	@GetMapping
-	public String getproduct(Model model) {
+	public Optional<Product> getproduct(Model model) {
 		String serialNum = "PC0001";
 		Optional<Product> product = productService.findBySerialNum(serialNum);
 		model.addAttribute("product", product);
-		return "product";
+		return product;
 	}
 
 }
