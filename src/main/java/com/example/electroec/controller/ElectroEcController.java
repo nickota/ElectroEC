@@ -1,7 +1,5 @@
 package com.example.electroec.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,11 +33,11 @@ public class ElectroEcController {
 
 	@RequestMapping(path = "/product/a")
 	@GetMapping
-	public Optional<Product> getproduct(Model model) {
+	public String getproduct(Model model) {
 		String serialNum = "PC0001";
-		Optional<Product> product = productService.findBySerialNum(serialNum);
+		Product product = productService.findBySerialNum(serialNum).get();
 		model.addAttribute("product", product);
-		return product;
+		return "product";
 	}
 
 }
