@@ -271,13 +271,13 @@
 
 				<!-- Product details -->
 				<div class="col-md-5">
-					<div class="product-details">
-						<h2 th:text="${product.name}" class="product-name">product name goes here</h2>
+					<div th:object="${product}" class="product-details">
+						<h2 th:text="*{name}" class="product-name">product name goes here</h2>
 						<div>
 							<div class="product-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star-o"></i>
+							
+								<i th:each="i : ${#numbers.sequence(1, 10)}"　class="fa fa-star"></i>
+									<i class="fa fa-star-o"></i>
 							</div>
 							<a class="review-link" href="#">10 Review(s) | Add your
 								review</a>
@@ -289,10 +289,7 @@
 							</h3>
 							<span class="product-available">In Stock</span>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-							ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<p th:text="*{description}">Description.</p>
 
 						<div class="product-options">
 							<label> Size <select class="input-select">
