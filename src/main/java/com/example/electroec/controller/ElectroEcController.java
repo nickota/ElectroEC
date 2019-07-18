@@ -35,7 +35,7 @@ public class ElectroEcController {
 	@GetMapping
 	public String getproduct(Model model) {
 		String serialNum = "PC0001";
-		Product product = productService.findBySerialNum(serialNum).get();
+		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		model.addAttribute("product", product);
 		return "product";
 	}
