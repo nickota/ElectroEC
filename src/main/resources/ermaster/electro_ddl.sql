@@ -104,7 +104,7 @@ CREATE TABLE products
 CREATE TABLE product_status
 (
 	id int NOT NULL AUTO_INCREMENT COMMENT 'id',
-	status int NOT NULL COMMENT 'status',
+	status varchar(50) NOT NULL COMMENT 'status',
 	insert_date datetime DEFAULT CURRENT_TIMESTAMP  NOT NULL COMMENT 'insert_date',
 	update_date datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  NOT NULL COMMENT 'update_date',
 	insert_user varchar(255) NOT NULL COMMENT 'insert_user',
