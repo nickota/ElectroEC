@@ -18,7 +18,7 @@ public class ProductStatus implements Serializable {
 	private Integer id;
 
 	/** status. */
-	private Integer status;
+	private String status;
 
 	/** insert_date. */
 	private Date insertDate;
@@ -41,8 +41,7 @@ public class ProductStatus implements Serializable {
 	/**
 	 * id を設定します.
 	 * 
-	 * @param id
-	 *            id
+	 * @param id id
 	 */
 	public void setId(Integer id) {
 		this.id = id;
@@ -60,10 +59,9 @@ public class ProductStatus implements Serializable {
 	/**
 	 * status を設定します.
 	 * 
-	 * @param status
-	 *            status
+	 * @param status status
 	 */
-	public void setStatus(Integer status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -72,15 +70,14 @@ public class ProductStatus implements Serializable {
 	 * 
 	 * @return status
 	 */
-	public Integer getStatus() {
+	public String getStatus() {
 		return this.status;
 	}
 
 	/**
 	 * insert_date を設定します.
 	 * 
-	 * @param insertDate
-	 *            insert_date
+	 * @param insertDate insert_date
 	 */
 	public void setInsertDate(Date insertDate) {
 		this.insertDate = insertDate;
@@ -98,8 +95,7 @@ public class ProductStatus implements Serializable {
 	/**
 	 * update_date を設定します.
 	 * 
-	 * @param updateDate
-	 *            update_date
+	 * @param updateDate update_date
 	 */
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
@@ -117,8 +113,7 @@ public class ProductStatus implements Serializable {
 	/**
 	 * insert_user を設定します.
 	 * 
-	 * @param insertUser
-	 *            insert_user
+	 * @param insertUser insert_user
 	 */
 	public void setInsertUser(String insertUser) {
 		this.insertUser = insertUser;
@@ -136,8 +131,7 @@ public class ProductStatus implements Serializable {
 	/**
 	 * update_user を設定します.
 	 * 
-	 * @param updateUser
-	 *            update_user
+	 * @param updateUser update_user
 	 */
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
