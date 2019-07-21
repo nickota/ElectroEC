@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.electroec.entity.Product;
+import com.example.electroec.entity.ProductStatus;
 import com.example.electroec.service.ProductService;
+import com.example.electroec.service.ProductStatusService;
 
 @Controller
 public class ElectroEcController {
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ProductStatusService statusService;
 
 	@RequestMapping(path = "/")
 	@GetMapping
@@ -36,7 +40,9 @@ public class ElectroEcController {
 	public String getproduct(Model model) {
 		String serialNum = "PC0001";
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
+		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
 		model.addAttribute("product", product);
+		model.addAttribute("status", status.getStatus());
 		return "product";
 	}
 

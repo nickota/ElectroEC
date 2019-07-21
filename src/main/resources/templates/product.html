@@ -289,7 +289,7 @@
 								$980.00
 								<!-- <del class="product-old-price">$990.00</del> -->
 							</h3>
-							<span class="product-available">In Stock</span>
+							<span th:text="${status}" class="product-available"></span>
 						</div>
 						<p th:text="*{description}">Description.</p>
 
