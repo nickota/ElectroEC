@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.electroec.entity.Product;
 import com.example.electroec.entity.ProductStatus;
+import com.example.electroec.entity.Review;
 import com.example.electroec.service.ProductService;
 import com.example.electroec.service.ProductStatusService;
+import com.example.electroec.service.ReviewService;
 
 @Controller
 public class ElectroEcController {
@@ -18,6 +20,8 @@ public class ElectroEcController {
 	private ProductService productService;
 	@Autowired
 	private ProductStatusService statusService;
+	@Autowired
+	private ReviewService reviewService;
 
 	@RequestMapping(path = "/")
 	@GetMapping
@@ -41,7 +45,8 @@ public class ElectroEcController {
 		String serialNum = "PC0001";
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
-		model.addAttribute("product", product);
+		Iterable<Review> reviews = reviewService.findall();
+		model.addAttribute("reviewCount", Iterables.size(reviews));
 		model.addAttribute("status", status.getStatus());
 		return "product";
 	}
