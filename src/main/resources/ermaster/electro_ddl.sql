@@ -117,7 +117,7 @@ CREATE TABLE product_status
 CREATE TABLE reviews
 (
 	id int NOT NULL AUTO_INCREMENT COMMENT 'id',
-	product_id int NOT NULL COMMENT 'product_id',
+	product_serial varchar(255) NOT NULL COMMENT 'product_serial',
 	name varchar(255) NOT NULL COMMENT 'name',
 	email varchar(255) NOT NULL COMMENT 'email',
 	review varchar(255) COMMENT 'review',

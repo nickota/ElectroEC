@@ -1,5 +1,7 @@
 package com.example.electroec.controller;
 
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +48,8 @@ public class ElectroEcController {
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
 		Iterable<Review> reviews = reviewService.findall();
-		model.addAttribute("reviewCount", Iterables.size(reviews));
+		model.addAttribute("reviewCount", (int) StreamSupport.stream(reviews.spliterator(), false).count());
+		model.addAttribute("product", product);
 		model.addAttribute("status", status.getStatus());
 		return "product";
 	}

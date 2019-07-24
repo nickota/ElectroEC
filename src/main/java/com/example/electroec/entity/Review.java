@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * @version $Id$
  */
 @Entity
-@Table(name = "review")
+@Table(name = "reviews")
 public class Review implements Serializable {
 
 	/** serialVersionUID. */
@@ -24,8 +24,8 @@ public class Review implements Serializable {
 	@Id
 	private Integer id;
 
-	/** product_id. */
-	private Integer productId;
+	/** product_serial. */
+	private String productSerial;
 
 	/** name. */
 	private String name;
@@ -79,21 +79,21 @@ public class Review implements Serializable {
 	}
 
 	/**
-	 * product_id を設定します.
+	 * product_serial を設定します.
 	 * 
-	 * @param productId product_id
+	 * @param productSerial product_serial
 	 */
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setProductSerial(String productSerial) {
+		this.productSerial = productSerial;
 	}
 
 	/**
-	 * product_id を取得します.
+	 * product_serial を取得します.
 	 * 
-	 * @return product_id
+	 * @return product_serial
 	 */
-	public Integer getProductId() {
-		return this.productId;
+	public String getProductSerial() {
+		return this.productSerial;
 	}
 
 	/**
