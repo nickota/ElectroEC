@@ -48,8 +48,8 @@ public class ElectroEcController {
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
 		Iterable<Review> reviews = reviewService.findall();
-		model.addAttribute("reviewCount", (int) StreamSupport.stream(reviews.spliterator(), false).count());
 		model.addAttribute("product", product);
+		model.addAttribute("reviewCount", (int) StreamSupport.stream(reviews.spliterator(), false).count());
 		model.addAttribute("status", status.getStatus());
 		return "product";
 	}
