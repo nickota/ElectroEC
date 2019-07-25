@@ -398,18 +398,19 @@
 									<div class="col-md-3">
 										<div id="rating">
 											<div class="rating-avg">
-												<span>4.5</span>
+												<span
+													th:text="${#numbers.formatDecimal(product.rating, 1, 1)}">4.5</span>
 												<div class="rating-stars">
-													<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-														class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													<i th:each="i : ${#numbers.sequence(1, product.rating)}"
+														class="fa fa-star"></i> <i
+														th:each="i : ${#numbers.sequence(1, 5 - product.rating)}"
 														class="fa fa-star-o"></i>
 												</div>
 											</div>
 											<ul class="rating">
 												<li>
 													<div class="rating-stars">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+														<i th:each="i : ${#numbers.sequence(1, 5)}"
 															class="fa fa-star"></i>
 													</div>
 													<div class="rating-progress">
@@ -418,8 +419,9 @@
 												</li>
 												<li>
 													<div class="rating-stars">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+														<i th:each="i : ${#numbers.sequence(1, 4)}"
+															class="fa fa-star"></i> <i
+															th:each="i : ${#numbers.sequence(1, 1)}"
 															class="fa fa-star-o"></i>
 													</div>
 													<div class="rating-progress">
@@ -428,8 +430,9 @@
 												</li>
 												<li>
 													<div class="rating-stars">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
+														<i th:each="i : ${#numbers.sequence(1, 3)}"
+															class="fa fa-star"></i> <i
+															th:each="i : ${#numbers.sequence(1, 2)}"
 															class="fa fa-star-o"></i>
 													</div>
 													<div class="rating-progress">
@@ -438,8 +441,9 @@
 												</li>
 												<li>
 													<div class="rating-stars">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+														<i th:each="i : ${#numbers.sequence(1, 2)}"
+															class="fa fa-star"></i> <i
+															th:each="i : ${#numbers.sequence(1, 3)}"
 															class="fa fa-star-o"></i>
 													</div>
 													<div class="rating-progress">
@@ -448,8 +452,9 @@
 												</li>
 												<li>
 													<div class="rating-stars">
-														<i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
-															class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
+														<i th:each="i : ${#numbers.sequence(1, 1)}"
+															class="fa fa-star"></i> <i
+															th:each="i : ${#numbers.sequence(1, 4)}"
 															class="fa fa-star-o"></i>
 													</div>
 													<div class="rating-progress">
@@ -468,7 +473,8 @@
 												<li th:each="review : ${reviews}" th:object="${review}">
 													<div class="review-heading">
 														<h5 class="name">[[*{name}]]</h5>
-														<p class="date" th:text="${#dates.format(review.updateDate,'yyyy/MM/dd H:mm')}"></p>
+														<p class="date"
+															th:text="${#dates.format(review.updateDate,'yyyy/MM/dd H:mm')}"></p>
 														<div class="review-rating">
 															<i th:each="i : ${#numbers.sequence(1, review.rating)}"
 																class="fa fa-star"></i> <i
