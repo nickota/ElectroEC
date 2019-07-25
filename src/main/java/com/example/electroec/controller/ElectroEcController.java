@@ -49,6 +49,7 @@ public class ElectroEcController {
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
 		List<Review> reviews = reviewService.findall();
 		model.addAttribute("product", product);
+		model.addAttribute("reviews", reviews);
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("status", status.getStatus());
 		return "product";

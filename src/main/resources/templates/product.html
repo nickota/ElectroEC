@@ -282,7 +282,8 @@
 									th:each="i : ${#numbers.sequence(1, 5 - product.rating)}"
 									class="fa fa-star-o"></i>
 							</div>
-							<a th:text="|${reviewCount} Review(s). Add your review|" class="review-link" href="#"></a>
+							<a th:text="|${reviewCount} Review(s). Add your review|"
+								class="review-link" href="#"></a>
 						</div>
 						<div>
 							<h3 th:text="|$${#numbers.formatDecimal(product.price, 1, 2)}|"
@@ -349,7 +350,8 @@
 						<ul class="tab-nav">
 							<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
 							<li><a data-toggle="tab" href="#tab2">Details</a></li>
-							<li><a th:text="|Reviews (${reviewCount})|" data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+							<li><a th:text="|Reviews (${reviewCount})|"
+								data-toggle="tab" href="#tab3">Reviews (3)</a></li>
 						</ul>
 						<!-- /product tab nav -->
 
@@ -462,53 +464,20 @@
 									<!-- Reviews -->
 									<div class="col-md-6">
 										<div id="reviews">
-											<ul class="reviews">
-												<li>
+											<ul th:inline="text" class="reviews">
+												<li th:each="review : ${reviews}" th:object="${review}">
 													<div class="review-heading">
-														<h5 class="name">John</h5>
-														<p class="date">27 DEC 2018, 8:0 PM</p>
+														<h5 class="name">[[*{name}]]</h5>
+														<p class="date" th:text="${#dates.format(new java.util.Date(),'yyyy/MM/dd')}">[[*{updateDate}]]</p>
 														<div class="review-rating">
-															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+															<i th:each="i : ${#numbers.sequence(1, review.rating)}"
+																class="fa fa-star"></i> <i
+																th:each="i : ${#numbers.sequence(1, 5 - review.rating)}"
 																class="fa fa-star-o empty"></i>
 														</div>
 													</div>
 													<div class="review-body">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit, sed do eiusmod tempor incididunt ut labore et
-															dolore magna aliqua</p>
-													</div>
-												</li>
-												<li>
-													<div class="review-heading">
-														<h5 class="name">John</h5>
-														<p class="date">27 DEC 2018, 8:0 PM</p>
-														<div class="review-rating">
-															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star-o empty"></i>
-														</div>
-													</div>
-													<div class="review-body">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit, sed do eiusmod tempor incididunt ut labore et
-															dolore magna aliqua</p>
-													</div>
-												</li>
-												<li>
-													<div class="review-heading">
-														<h5 class="name">John</h5>
-														<p class="date">27 DEC 2018, 8:0 PM</p>
-														<div class="review-rating">
-															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-																class="fa fa-star-o empty"></i>
-														</div>
-													</div>
-													<div class="review-body">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit, sed do eiusmod tempor incididunt ut labore et
-															dolore magna aliqua</p>
+														<p>[[*{review}]]</p>
 													</div>
 												</li>
 											</ul>
