@@ -47,7 +47,7 @@ public class ElectroEcController {
 		String serialNum = "PC0001";
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
-		List<Review> reviews = reviewService.findall();
+		List<Review> reviews = reviewService.findAll();
 		model.addAttribute("product", product);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("reviewCount", reviews.size());

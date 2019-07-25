@@ -14,7 +14,9 @@ public class ReviewService {
 	@Autowired
 	ReviewRepository reviewRepository;
 
-	public List<Review> findall() {
+	public List<Review> findAll() {
 		return reviewRepository.findAll();
 	}
+
+	public int findRa
 }
