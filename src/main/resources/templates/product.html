@@ -468,7 +468,7 @@
 												<li th:each="review : ${reviews}" th:object="${review}">
 													<div class="review-heading">
 														<h5 class="name">[[*{name}]]</h5>
-														<p class="date" th:text="${#dates.format(new java.util.Date(),'yyyy/MM/dd')}">[[*{updateDate}]]</p>
+														<p class="date" th:text="${#dates.format(review.updateDate,'yyyy/MM/dd H:mm')}"></p>
 														<div class="review-rating">
 															<i th:each="i : ${#numbers.sequence(1, review.rating)}"
 																class="fa fa-star"></i> <i
