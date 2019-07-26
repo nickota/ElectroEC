@@ -17,6 +17,4 @@ public class ReviewService {
 	public List<Review> findAll() {
 		return reviewRepository.findAll();
 	}
-
-	public int findRa
 }
