@@ -3,9 +3,13 @@ package com.example.electroec.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 
 /**
  * reviews モデルクラス.
@@ -14,248 +18,60 @@ import javax.persistence.Table;
  * @version $Id$
  */
 @Entity
+@Data
 @Table(name = "reviews")
 public class Review implements Serializable {
 
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** id. */
+	@Column(name = "id")
 	@Id
 	private Integer id;
 
-	/** product_serial. */
+	@Column(name = "product_serial")
+	@NotNull
 	private String productSerial;
 
-	/** name. */
+	@Column(name = "name")
+	@NotNull
 	private String name;
 
-	/** email. */
+	@Column(name = "email")
+	@NotNull
 	private String email;
 
-	/** review. */
+	@Column(name = "review")
 	private String review;
 
-	/** rating. */
+	@Column(name = "rating")
+	@NotNull
 	private Integer rating;
 
-	/** review_date. */
+	@Column(name = "review_date")
+	@NotNull
 	private Date reviewDate;
 
-	/** insert_date. */
+	@Column(name = "insert_date")
+	@NotNull
 	private Date insertDate;
 
-	/** update_date. */
+	@Column(name = "update_date")
+	@NotNull
 	private Date updateDate;
 
-	/** insert_user. */
+	@Column(name = "insert_user")
+	@NotNull
 	private String insertUser;
 
-	/** update_user. */
+	@Column(name = "update_user")
+	@NotNull
 	private String updateUser;
 
 	/**
-	 * コンストラクタ.
+	 * Constructor.
 	 */
 	public Review() {
-	}
-
-	/**
-	 * id を設定します.
-	 * 
-	 * @param id id
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	 * id を取得します.
-	 * 
-	 * @return id
-	 */
-	public Integer getId() {
-		return this.id;
-	}
-
-	/**
-	 * product_serial を設定します.
-	 * 
-	 * @param productSerial product_serial
-	 */
-	public void setProductSerial(String productSerial) {
-		this.productSerial = productSerial;
-	}
-
-	/**
-	 * product_serial を取得します.
-	 * 
-	 * @return product_serial
-	 */
-	public String getProductSerial() {
-		return this.productSerial;
-	}
-
-	/**
-	 * name を設定します.
-	 * 
-	 * @param name name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * name を取得します.
-	 * 
-	 * @return name
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * email を設定します.
-	 * 
-	 * @param email email
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	/**
-	 * email を取得します.
-	 * 
-	 * @return email
-	 */
-	public String getEmail() {
-		return this.email;
-	}
-
-	/**
-	 * review を設定します.
-	 * 
-	 * @param review review
-	 */
-	public void setReview(String review) {
-		this.review = review;
-	}
-
-	/**
-	 * review を取得します.
-	 * 
-	 * @return review
-	 */
-	public String getReview() {
-		return this.review;
-	}
-
-	/**
-	 * rating を設定します.
-	 * 
-	 * @param rating rating
-	 */
-	public void setRating(Integer rating) {
-		this.rating = rating;
-	}
-
-	/**
-	 * rating を取得します.
-	 * 
-	 * @return rating
-	 */
-	public Integer getRating() {
-		return this.rating;
-	}
-
-	/**
-	 * review_date を設定します.
-	 * 
-	 * @param reviewDate review_date
-	 */
-	public void setReviewDate(Date reviewDate) {
-		this.reviewDate = reviewDate;
-	}
-
-	/**
-	 * review_date を取得します.
-	 * 
-	 * @return review_date
-	 */
-	public Date getReviewDate() {
-		return this.reviewDate;
-	}
-
-	/**
-	 * insert_date を設定します.
-	 * 
-	 * @param insertDate insert_date
-	 */
-	public void setInsertDate(Date insertDate) {
-		this.insertDate = insertDate;
-	}
-
-	/**
-	 * insert_date を取得します.
-	 * 
-	 * @return insert_date
-	 */
-	public Date getInsertDate() {
-		return this.insertDate;
-	}
-
-	/**
-	 * update_date を設定します.
-	 * 
-	 * @param updateDate update_date
-	 */
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	/**
-	 * update_date を取得します.
-	 * 
-	 * @return update_date
-	 */
-	public Date getUpdateDate() {
-		return this.updateDate;
-	}
-
-	/**
-	 * insert_user を設定します.
-	 * 
-	 * @param insertUser insert_user
-	 */
-	public void setInsertUser(String insertUser) {
-		this.insertUser = insertUser;
-	}
-
-	/**
-	 * insert_user を取得します.
-	 * 
-	 * @return insert_user
-	 */
-	public String getInsertUser() {
-		return this.insertUser;
-	}
-
-	/**
-	 * update_user を設定します.
-	 * 
-	 * @param updateUser update_user
-	 */
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-
-	/**
-	 * update_user を取得します.
-	 * 
-	 * @return update_user
-	 */
-	public String getUpdateUser() {
-		return this.updateUser;
 	}
 
 	/**
