@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS brands;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS product_status;
 DROP TABLE IF EXISTS reviews;
@@ -79,6 +80,24 @@ CREATE TABLE customers
 	update_user varchar(255) NOT NULL COMMENT 'update_user',
 	PRIMARY KEY (id)
 ) COMMENT = 'customers';
+
+
+-- images
+CREATE TABLE images
+(
+	id int NOT NULL AUTO_INCREMENT COMMENT 'id',
+	product_serial varchar(255) NOT NULL COMMENT 'product_serial',
+	main varchar(255) COMMENT 'main',
+	sub1 varchar(255) COMMENT 'sub1',
+	sub2 varchar(255) COMMENT 'sub2',
+	sub3 varchar(255) COMMENT 'sub3',
+	sub4 varchar(255) COMMENT 'sub4',
+	insert_date datetime DEFAULT CURRENT_TIMESTAMP  NOT NULL COMMENT 'insert_date',
+	update_date datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  NOT NULL COMMENT 'update_date',
+	insert_user varchar(255) NOT NULL COMMENT 'insert_user',
+	update_user varchar(255) NOT NULL COMMENT 'update_user',
+	PRIMARY KEY (id)
+) COMMENT = 'images';
 
 
 -- products
