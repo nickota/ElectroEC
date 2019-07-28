@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.electroec.entity.Product;
@@ -41,10 +42,9 @@ public class ElectroEcController {
 		return "store";
 	}
 
-	@RequestMapping(path = "/product/a")
+	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
-	public String getproduct(Model model) {
-		String serialNum = "PC0001";
+	public String getproduct(@PathVariable String serialNum, Model model) {
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
 		List<Review> reviews = reviewService.findAll();
