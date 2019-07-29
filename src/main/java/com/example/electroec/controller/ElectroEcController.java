@@ -45,17 +45,17 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
+
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
-		// TODO Search by serialNum.
-		// https://qiita.com/sndr/items/af7d12be264c2cc4b252
+
 		List<Review> reviews = reviewService.findByProductSerial(serialNum);
 
 		// Add to model
 		model.addAttribute("product", product);
+		model.addAttribute("status", status.getStatus());
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("reviewCount", reviews.size());
-		model.addAttribute("status", status.getStatus());
 		return "product";
 	}
 
