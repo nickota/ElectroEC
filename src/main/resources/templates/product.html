@@ -221,7 +221,7 @@
 	<!-- /BREADCRUMB -->
 
 	<!-- SECTION -->
-	<div class="section">
+	<div th:object="${product}" class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -230,19 +230,19 @@
 				<div class="col-md-5 col-md-push-2">
 					<div id="product-main-img">
 						<div class="product-preview">
-							<img src="../img/product01.png" alt="">
+							<img th:src="|../img/*{main}|" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="../img/product03.png" alt="">
+							<img th:src="|../img/*{sub1}|" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="../img/product06.png" alt="">
+							<img th:src="|../img/*{sub2}|" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="../img/product08.png" alt="">
+							<img th:src="|../img/*{sub3}|" alt="">
 						</div>
 					</div>
 				</div>
@@ -252,19 +252,19 @@
 				<div class="col-md-2  col-md-pull-5">
 					<div id="product-imgs">
 						<div class="product-preview">
-							<img src="../img/product01.png" alt="">
+							<img th:src="|../img/*{main}|" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="../img/product03.png" alt="">
+							<img th:src="|../img/*{sub1}|" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="../img/product06.png" alt="">
+							<img th:src="|../img/*{sub2}|" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="../img/product08.png" alt="">
+							<img th:src="|../img/*{sub3}|" alt="">
 						</div>
 					</div>
 				</div>
@@ -272,7 +272,7 @@
 
 				<!-- Product details -->
 				<div class="col-md-5">
-					<div th:object="${product}" class="product-details">
+					<div class="product-details">
 						<h2 th:text="*{name}" class="product-name">product name goes
 							here</h2>
 						<div>
