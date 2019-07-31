@@ -53,6 +53,18 @@ public class Product implements Serializable {
 	@Column(name = "rating")
 	private Integer rating;
 
+	@Column(name = "main")
+	private String main;
+
+	@Column(name = "sub1")
+	private String sub1;
+
+	@Column(name = "sub2")
+	private String sub2;
+
+	@Column(name = "sub3")
+	private String sub3;
+
 	@Column(name = "insert_date")
 	@NotNull
 	private Date insertDate;
