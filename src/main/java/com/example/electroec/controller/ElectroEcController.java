@@ -55,6 +55,7 @@ public class ElectroEcController {
 
 		List<Review> reviews = reviewService.findByProductSerial(serialNum);
 		Iterable<Category> categories = categoryService.findAll();
+		Category category = categoryService.findById(product.getCategoryId()).orElse(null);
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -62,6 +63,7 @@ public class ElectroEcController {
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
+		model.addAttribute("category", category);
 
 		return "product";
 	}
