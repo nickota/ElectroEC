@@ -32,6 +32,9 @@ public class Category implements Serializable {
 	@NotNull
 	private String name;
 
+	@Column(name = "parent_id")
+	private Integer parent_id;
+
 	@Column(name = "insert_date")
 	@NotNull
 	private Date insertDate;

@@ -48,8 +48,9 @@ CREATE TABLE cart
 -- categories
 CREATE TABLE categories
 (
-	id int NOT NULL AUTO_INCREMENT COMMENT 'id',
+	id int NOT NULL COMMENT 'id',
 	name varchar(255) NOT NULL COMMENT 'name',
+	parent_id int COMMENT 'parent_id',
 	insert_date datetime DEFAULT CURRENT_TIMESTAMP  NOT NULL COMMENT 'insert_date',
 	update_date datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  NOT NULL COMMENT 'update_date',
 	insert_user varchar(255) NOT NULL COMMENT 'insert_user',
