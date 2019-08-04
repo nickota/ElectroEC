@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.electroec.entity.Cart;
 import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
 import com.example.electroec.entity.ProductStatus;
 import com.example.electroec.entity.Review;
+import com.example.electroec.service.CartService;
 import com.example.electroec.service.CategoryService;
 import com.example.electroec.service.ProductService;
 import com.example.electroec.service.ProductStatusService;
@@ -29,6 +31,8 @@ public class ElectroEcController {
 	private ReviewService reviewService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private CartService cartService;
 
 	@RequestMapping(path = "/")
 	@GetMapping
@@ -50,12 +54,15 @@ public class ElectroEcController {
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
 
+		Integer customerId = 1;
+
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
 
 		List<Review> reviews = reviewService.findByProductSerial(serialNum);
 		Iterable<Category> categories = categoryService.findAll();
 		Category category = categoryService.findById(product.getCategoryId()).orElse(null);
+		List<Cart> cartProducts = cartService.findByCustomerId(customerId);
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -64,6 +71,8 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("category", category);
+		model.addAttribute("cartProducts", cartProducts);
+		model.addAttribute("cartProductsCount", cartProducts.size());
 
 		return "product";
 	}
