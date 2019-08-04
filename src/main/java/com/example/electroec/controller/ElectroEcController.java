@@ -54,7 +54,7 @@ public class ElectroEcController {
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
 
-		Integer customerId = 1;
+		Integer customerId = new Integer(1);
 
 		Product product = productService.findBySerialNum(serialNum).orElse(null);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
