@@ -62,7 +62,7 @@ public class ElectroEcController {
 		List<Review> reviews = reviewService.findByProductSerial(serialNum);
 		Iterable<Category> categories = categoryService.findAll();
 		Category category = categoryService.findById(product.getCategoryId()).orElse(null);
-		List<Cart> cartProducts = cartService.findByCustomerId(customerId);
+		List<Cart> cartDetails = cartService.findByCustomerId(customerId);
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -71,8 +71,8 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("category", category);
-		model.addAttribute("cartProducts", cartProducts);
-		model.addAttribute("cartProductsCount", cartProducts.size());
+		model.addAttribute("cartDetails", cartDetails);
+		model.addAttribute("cartDetailsCount", cartDetails.size());
 
 		return "product";
 	}
