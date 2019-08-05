@@ -1,5 +1,6 @@
 package com.example.electroec.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,15 +55,26 @@ public class ElectroEcController {
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
 
+		// Customers
 		Integer customerId = new Integer(1);
 
-		Product product = productService.findBySerialNum(serialNum).orElse(null);
+		// Products
+		Product product = productService.findFirstBySerialNum(serialNum);
 		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
 
+		// Reviews
 		List<Review> reviews = reviewService.findByProductSerial(serialNum);
+
+		// Categories
 		Iterable<Category> categories = categoryService.findAll();
 		Category category = categoryService.findById(product.getCategoryId()).orElse(null);
+
+		// Cart
 		List<Cart> cartDetails = cartService.findByCustomerId(customerId);
+		List<Product> cartProducts = new ArrayList<Product>();
+		for (Cart cartDetail : cartDetails) {
+			cartProducts.add(productService.findFirstBySerialNum(cartDetail.getProductSerial()));
+		}
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -71,8 +83,8 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("category", category);
-		model.addAttribute("cartDetails", cartDetails);
 		model.addAttribute("cartDetailsCount", cartDetails.size());
+		model.addAttribute("cartProducts", cartProducts);
 
 		return "product";
 	}
