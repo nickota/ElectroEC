@@ -1,9 +1,10 @@
 package com.example.electroec.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.electroec.entity.Product;
 
-public interface ProductRepository extends CrudRepository<Product, String> {
+public interface ProductRepository extends JpaRepository<Product, String> {
 
+	public Product findFirstBySerialNum(String serial);
 }
