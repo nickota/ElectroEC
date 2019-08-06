@@ -85,8 +85,14 @@ public class ElectroEcController {
 		model.addAttribute("category", category);
 		model.addAttribute("cartDetailsCount", cartDetails.size());
 		model.addAttribute("cartProducts", cartProducts);
+		model.addAttribute("subTotal", calculateSubTotal(cartProducts));
 
 		return "product";
+	}
+
+	private double calculateSubTotal(List<Product> cartProducts) {
+
+		return 1.00;
 	}
 
 }
