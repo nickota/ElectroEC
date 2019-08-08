@@ -91,8 +91,12 @@ public class ElectroEcController {
 	}
 
 	private double calculateSubTotal(List<Product> cartProducts) {
-
-		return 1.00;
+		double subTotal = 0.00;
+		int quantity = 1;
+		for (Product cartProduct : cartProducts) {
+			subTotal += cartProduct.getPrice() * quantity;
+		}
+		return subTotal;
 	}
 
 }

@@ -117,7 +117,7 @@
 													<a th:text=*{name} href="#">product name goes here</a>
 												</h3>
 												<h4 class="product-price">
-													<span class="qty">1x</span>$980.00
+													<span class="qty">1x</span><span th:text="|$${#numbers.formatDecimal(cartProduct.price, 1, 2)}|"></span>
 												</h4>
 											</div>
 											<button class="delete">
