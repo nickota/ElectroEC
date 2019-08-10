@@ -59,6 +59,18 @@ public class Category implements Serializable {
 	public Category() {
 	}
 
+	public Category(Integer id, String name, Integer parent_id, Date insertDate, Date updateDate, String insertUser,
+			String updateUser) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.parent_id = parent_id;
+		this.insertDate = insertDate;
+		this.updateDate = updateDate;
+		this.insertUser = insertUser;
+		this.updateUser = updateUser;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

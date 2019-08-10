@@ -75,6 +75,22 @@ public class Review implements Serializable {
 	public Review() {
 	}
 
+	public Review(Integer id, String productSerial, String name, String email, String review, Integer rating,
+			Date reviewDate, Date insertDate, Date updateDate, String insertUser, String updateUser) {
+		super();
+		this.id = id;
+		this.productSerial = productSerial;
+		this.name = name;
+		this.email = email;
+		this.review = review;
+		this.rating = rating;
+		this.reviewDate = reviewDate;
+		this.insertDate = insertDate;
+		this.updateDate = updateDate;
+		this.insertUser = insertUser;
+		this.updateUser = updateUser;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

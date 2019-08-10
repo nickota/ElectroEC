@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -27,7 +26,6 @@ public class Product implements Serializable {
 
 	@Column(name = "serial_num")
 	@Id
-	@GeneratedValue
 	private String serialNum;
 
 	@Column(name = "name")
@@ -87,6 +85,28 @@ public class Product implements Serializable {
 	 * Constructor.
 	 */
 	public Product() {
+	}
+
+	public Product(String serialNum, String name, Integer categoryId, String description, Double price, Integer brandId,
+			Integer status, Integer rating, String main, String sub1, String sub2, String sub3, Date insertDate,
+			Date updateDate, String insertUser, String updateUser) {
+		super();
+		this.serialNum = serialNum;
+		this.name = name;
+		this.categoryId = categoryId;
+		this.description = description;
+		this.price = price;
+		this.brandId = brandId;
+		this.status = status;
+		this.rating = rating;
+		this.main = main;
+		this.sub1 = sub1;
+		this.sub2 = sub2;
+		this.sub3 = sub3;
+		this.insertDate = insertDate;
+		this.updateDate = updateDate;
+		this.insertUser = insertUser;
+		this.updateUser = updateUser;
 	}
 
 	/**
