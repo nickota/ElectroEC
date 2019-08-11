@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -33,9 +35,10 @@ public class Product implements Serializable {
 	@NotNull
 	private String name;
 
-	@Column(name = "category_id")
+	@JoinColumn(name = "category_id")
+	@ManyToOne
 	@NotNull
-	private Integer categoryId;
+	private Category category;
 
 	@Column(name = "description")
 	private String description;
@@ -47,9 +50,10 @@ public class Product implements Serializable {
 	@Column(name = "brand_id")
 	private Integer brandId;
 
-	@Column(name = "status")
+	@JoinColumn(name = "status_id")
+	@ManyToOne
 	@NotNull
-	private Integer status;
+	private Status status;
 
 	@Column(name = "rating")
 	private Integer rating;

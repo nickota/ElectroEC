@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -35,9 +37,10 @@ public class Cart implements Serializable {
 	@NotNull
 	private Integer customerId;
 
-	@Column(name = "product_serial")
+	@JoinColumn(name = "product_serial")
+	@ManyToOne
 	@NotNull
-	private String productSerial;
+	private Product product;
 
 	@Column(name = "quantity")
 	@NotNull
