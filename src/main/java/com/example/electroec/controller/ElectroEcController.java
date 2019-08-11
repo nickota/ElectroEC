@@ -65,9 +65,10 @@ public class ElectroEcController {
 
 		// Cart
 		List<Cart> cart = cartService.findAll(customerId);
+
 		List<Product> cartContents = new ArrayList<Product>();
-		for (Cart cartContent : cart) {
-			cartContents.add(cartContent.getProduct());
+		for (Cart cartInfo : cart) {
+			cartContents.add(cartInfo.getProduct());
 		}
 
 		// Add to model
@@ -77,11 +78,19 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
-		model.addAttribute("cartContentsAmount", cartContents.size());
+		model.addAttribute("totalQuantity", totalQuantity(cart));
 		model.addAttribute("cartContents", cartContents);
 		model.addAttribute("subTotal", calculateSubTotal(cart));
 
 		return "product";
+	}
+
+	private int totalQuantity(List<Cart> cart) {
+		int totalQuantity = 0;
+		for (Cart cartInfo : cart) {
+			totalQuantity = +cartInfo.getQuantity();
+		}
+		return totalQuantity;
 	}
 
 	private double calculateSubTotal(List<Cart> cart) {

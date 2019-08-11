@@ -104,7 +104,7 @@
 								<a class="dropdown-toggle" data-toggle="dropdown"
 									aria-expanded="true"> <i class="fa fa-shopping-cart"></i> <span>Your
 										Cart</span>
-									<div th:text=${cartContentsAmount} class="qty"></div>
+									<div th:text=${totalQuantity} class="qty"></div>
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
@@ -126,7 +126,7 @@
 										</div>
 									</div>
 									<div class="cart-summary">
-										<small th:text="|${cartContentsAmount} Item(s) selected|"></small>
+										<small th:text="|${totalQuantity} Item(s) selected|"></small>
 										<h5 th:text="|SUBTOTAL: $${#numbers.formatDecimal(subTotal, 1, 2)}|">SUBTOTAL: $2940.00</h5>
 									</div>
 									<div class="cart-btns">
