@@ -18,8 +18,8 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 
-	public Product findFirstBySerialNum(String serialNum) {
-		return productRepository.findFirstBySerialNum(serialNum);
+	public Product findOne(String serialNum) {
+		return productRepository.findBySerialNum(serialNum);
 	}
 
 }

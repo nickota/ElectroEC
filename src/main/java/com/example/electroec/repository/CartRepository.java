@@ -8,5 +8,5 @@ import com.example.electroec.entity.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 
-	public List<Cart> findByCustomerId(Integer customerId);
+	public List<Cart> findAllByCustomerId(Integer customerId);
 }

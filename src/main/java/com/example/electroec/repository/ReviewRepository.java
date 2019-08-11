@@ -8,5 +8,5 @@ import com.example.electroec.entity.Review;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-	public List<Review> findByProductSerial(String serial);
+	public List<Review> findAllByProductSerial(String serial);
 }

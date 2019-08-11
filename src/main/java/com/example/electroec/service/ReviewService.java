@@ -18,7 +18,7 @@ public class ReviewService {
 		return reviewRepository.findAll();
 	}
 
-	public List<Review> findByProductSerial(String serial) {
-		return reviewRepository.findByProductSerial(serial);
+	public List<Review> findAll(String serial) {
+		return reviewRepository.findAllByProductSerial(serial);
 	}
 }

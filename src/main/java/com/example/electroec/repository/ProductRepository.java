@@ -6,5 +6,5 @@ import com.example.electroec.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, String> {
 
-	public Product findFirstBySerialNum(String serial);
+	public Product findBySerialNum(String serial);
 }
