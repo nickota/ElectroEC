@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.electroec.entity.Cart;
 import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
-import com.example.electroec.entity.ProductStatus;
 import com.example.electroec.entity.Review;
 import com.example.electroec.service.CartService;
 import com.example.electroec.service.CategoryService;
 import com.example.electroec.service.ProductService;
-import com.example.electroec.service.ProductStatusService;
 import com.example.electroec.service.ReviewService;
 
 @Controller
@@ -26,8 +24,6 @@ public class ElectroEcController {
 
 	@Autowired
 	private ProductService productService;
-	@Autowired
-	private ProductStatusService statusService;
 	@Autowired
 	private ReviewService reviewService;
 	@Autowired
@@ -59,33 +55,31 @@ public class ElectroEcController {
 		Integer customerId = new Integer(1);
 
 		// Products
-		Product product = productService.findFirstBySerialNum(serialNum);
-		ProductStatus status = statusService.findById(product.getStatus()).orElse(null);
+		Product product = productService.findOne(serialNum);
 
 		// Reviews
-		List<Review> reviews = reviewService.findByProductSerial(serialNum);
+		List<Review> reviews = reviewService.findAll(serialNum);
 
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
-		Category category = categoryService.findById(product.getCategoryId()).orElse(null);
 
 		// Cart
-		List<Cart> cartDetails = cartService.findByCustomerId(customerId);
-		List<Product> cartProducts = new ArrayList<Product>();
-		for (Cart cartDetail : cartDetails) {
-			cartProducts.add(productService.findFirstBySerialNum(cartDetail.getProductSerial()));
+		List<Cart> cart = cartService.findAll(customerId);
+		List<Product> cartContents = new ArrayList<Product>();
+		for (Cart cartContent : cart) {
+			cartContents.add(cartContent.getProduct());
 		}
 
 		// Add to model
 		model.addAttribute("product", product);
-		model.addAttribute("status", status.getStatus());
+		model.addAttribute("status", product.getStatus().getName());
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
-		model.addAttribute("category", category);
-		model.addAttribute("cartDetailsCount", cartDetails.size());
-		model.addAttribute("cartProducts", cartProducts);
-		model.addAttribute("subTotal", calculateSubTotal(cartProducts));
+		model.addAttribute("productCategory", product.getCategory().getName());
+		model.addAttribute("cartContentsAmount", cartContents.size());
+		model.addAttribute("cartContents", cartContents);
+		model.addAttribute("subTotal", calculateSubTotal(cartContents));
 
 		return "product";
 	}
