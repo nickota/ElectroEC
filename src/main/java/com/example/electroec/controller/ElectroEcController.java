@@ -1,6 +1,5 @@
 package com.example.electroec.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,11 +65,6 @@ public class ElectroEcController {
 		// Cart
 		List<Cart> cart = cartService.findAll(customerId);
 
-		List<Product> cartContents = new ArrayList<Product>();
-		for (Cart cartInfo : cart) {
-			cartContents.add(cartInfo.getProduct());
-		}
-
 		// Add to model
 		model.addAttribute("product", product);
 		model.addAttribute("status", product.getStatus().getName());
@@ -79,7 +73,7 @@ public class ElectroEcController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
 		model.addAttribute("totalQuantity", totalQuantity(cart));
-		model.addAttribute("cartContents", cartContents);
+		model.addAttribute("cart", cart);
 		model.addAttribute("subTotal", calculateSubTotal(cart));
 
 		return "product";
