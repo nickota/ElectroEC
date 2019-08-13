@@ -108,7 +108,8 @@
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
-										<div th:each="cartInfo : ${cart}" th:object="${cartInfo.product}" class="product-widget">
+										<div th:each="cartInfo : ${cart}"
+											th:object="${cartInfo.product}" class="product-widget">
 											<div class="product-img">
 												<img th:src="|../img/*{main}|" alt="">
 											</div>
@@ -117,7 +118,8 @@
 													<a th:text=*{name} href="#">product name goes here</a>
 												</h3>
 												<h4 class="product-price">
-													<span th:text="|${cartInfo.quantity}x|" class="qty">1x</span><span th:text="|$${#numbers.formatDecimal(cartInfo.product.price, 1, 2)}|"></span>
+													<span th:text="|${cartInfo.quantity}x|" class="qty"></span><span
+														th:text="|$${#numbers.formatDecimal(cartInfo.product.price, 1, 2)}|"></span>
 												</h4>
 											</div>
 											<button class="delete">
@@ -127,7 +129,8 @@
 									</div>
 									<div class="cart-summary">
 										<small th:text="|${totalQuantity} Item(s) selected|"></small>
-										<h5 th:text="|SUBTOTAL: $${#numbers.formatDecimal(subTotal, 1, 2)}|">SUBTOTAL: $2940.00</h5>
+										<h5
+											th:text="|SUBTOTAL: $${#numbers.formatDecimal(subTotal, 1, 2)}|"></h5>
 									</div>
 									<div class="cart-btns">
 										<a href="#">View Cart</a> <a href="#">Checkout <i
