@@ -49,19 +49,14 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
-
 		// Customers
 		Integer customerId = new Integer(1);
-
 		// Products
 		Product product = productService.findOne(serialNum);
-
 		// Reviews
 		List<Review> reviews = reviewService.findAll(serialNum);
-
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
-
 		// Cart
 		List<Cart> cart = cartService.findAll(customerId);
 
