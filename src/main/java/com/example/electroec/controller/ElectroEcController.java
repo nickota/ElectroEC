@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.electroec.entity.Cart;
@@ -61,6 +62,7 @@ public class ElectroEcController {
 		List<Cart> cart = cartService.findAll(customerId);
 
 		// Add to model
+		model.addAttribute("serialNum", serialNum);
 		model.addAttribute("product", product);
 		model.addAttribute("status", product.getStatus().getName());
 		model.addAttribute("reviews", reviews);
@@ -72,6 +74,13 @@ public class ElectroEcController {
 		model.addAttribute("subTotal", calculateSubTotal(cart));
 
 		return "product";
+	}
+
+	@RequestMapping(path = "/product/{serialNum}/addToCart")
+	@PostMapping
+	public String addToCart(@PathVariable String serialNum) {
+		cartService.add(serialNum);
+		return "redirect:/product/{serialNum}/";
 	}
 
 	// Calculates the total quantity included in the cart.
