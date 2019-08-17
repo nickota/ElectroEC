@@ -279,7 +279,7 @@
 						-->
 
 						<form class="add-to-cart"
-							th:action="@{/product/{serialNum}/{action}(serialNum=${serialNum}, action=${'addToCart'})}"
+							th:action="@{/product/{serialNum}/{action}(serialNum=*{serialNum}, action=${'addToCart'})}"
 							method="post">
 							<div class="qty-label">
 								Qty

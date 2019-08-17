@@ -62,7 +62,6 @@ public class ElectroEcController {
 		List<Cart> cart = cartService.findAll(customerId);
 
 		// Add to model
-		model.addAttribute("serialNum", serialNum);
 		model.addAttribute("product", product);
 		model.addAttribute("status", product.getStatus().getName());
 		model.addAttribute("reviews", reviews);
