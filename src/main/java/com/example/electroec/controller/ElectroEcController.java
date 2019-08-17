@@ -80,7 +80,7 @@ public class ElectroEcController {
 	@PostMapping
 	public String addToCart(@PathVariable String serialNum) {
 		cartService.add(serialNum);
-		return "redirect:/product/{serialNum}/";
+		return "redirect:/product/{serialNum}";
 	}
 
 	// Calculates the total quantity included in the cart.

@@ -278,7 +278,9 @@
 						</div>
 						-->
 
-						<div class="add-to-cart">
+						<form class="add-to-cart"
+							th:action="@{/product/{serialNum}/{action}(serialNum=${serialNum}, action=${'addToCart'})}"
+							method="post">
 							<div class="qty-label">
 								Qty
 								<div class="input-number">
@@ -289,7 +291,7 @@
 							<button class="add-to-cart-btn">
 								<i class="fa fa-shopping-cart"></i> add to cart
 							</button>
-						</div>
+						</form>
 						<ul class="product-links">
 							<li>Category:</li>
 							<li><a href="#">Headphones</a></li>
