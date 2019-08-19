@@ -92,7 +92,7 @@ public class ElectroEcController {
 		return totalQuantity;
 	}
 
-	// Calculates the subtotal to show over the cart.
+	// Calculates the subtotal to show on cart.
 	private double calculateSubTotal(List<Cart> cart) {
 		double subTotal = 0.00;
 		for (Cart cartInfo : cart) {
