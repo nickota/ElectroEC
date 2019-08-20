@@ -78,7 +78,6 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}/addToCart")
 	@PostMapping
 	public String addToCart(@PathVariable String serialNum) {
-		// TODO INSERT or UPDATE
 		cartService.add(serialNum);
 		return "redirect:/product/{serialNum}";
 	}
