@@ -28,6 +28,21 @@ public class CartService {
 		Integer quantity = new Integer(1);
 
 		List<Cart> cartInfos = findAll(customerId);
+
+		// insert
+		if (cartInfos.isEmpty()) {
+			Cart cart = new Cart();
+			cart.setCustomerId(customerId);
+			cart.setProduct(productRepository.getOne(serialNum));
+			cart.setQuantity(quantity);
+			cart.setInsertDate(new Date());
+			cart.setUpdateDate(new Date());
+			cart.setInsertUser(customerId.toString());
+			cart.setUpdateUser(customerId.toString());
+
+			cartRepository.save(cart);
+		}
+
 		for (Cart cartinfo : cartInfos) {
 
 			// update
