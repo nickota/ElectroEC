@@ -31,6 +31,9 @@ public class ElectroEcController {
 	@Autowired
 	private CartService cartService;
 
+	// Customers
+	Integer customerId = new Integer(1);
+
 	@RequestMapping(path = "/")
 	@GetMapping
 	public String index(Model model) {
@@ -50,8 +53,7 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
-		// Customers
-		Integer customerId = new Integer(1);
+
 		// Products
 		Product product = productService.findOne(serialNum);
 		// Reviews
@@ -78,8 +80,18 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}/addToCart")
 	@PostMapping
 	public String addToCart(@PathVariable String serialNum) {
-		// TODO: insert or update may be suggested here.
-		cartService.add(serialNum);
+		Integer quantity = new Integer(1);
+
+		List<Cart> cartInfos = cartService.findAll(customerId);
+		if (cartInfos.isEmpty()) {
+			cartService.insert(serialNum, quantity);
+		}
+
+		for (Cart cartInfo : cartInfos) {
+			if (cartInfo.getProduct().getSerialNum().equals(serialNum)) {
+				cartService.update(serialNum, quantity);
+			}
+		}
 		return "redirect:/product/{serialNum}";
 	}
 

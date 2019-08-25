@@ -22,48 +22,25 @@ public class CartService {
 		return cartRepository.findAllByCustomerId(customerId);
 	}
 
-	public void add(String serialNum) {
+	Integer customerId = new Integer(1);
 
-		Integer customerId = new Integer(1);
-		Integer quantity = new Integer(1);
+	public void insert(String serialNum, Integer quantity) {
+		Cart cart = new Cart();
+		cart.setCustomerId(customerId);
+		cart.setProduct(productRepository.getOne(serialNum));
+		cart.setQuantity(quantity);
+		cart.setInsertDate(new Date());
+		cart.setUpdateDate(new Date());
+		cart.setInsertUser(customerId.toString());
+		cart.setUpdateUser(customerId.toString());
 
-		List<Cart> cartInfos = findAll(customerId);
+		cartRepository.save(cart);
+	}
 
-		// insert
-		if (cartInfos.isEmpty()) {
-			Cart cart = new Cart();
-			cart.setCustomerId(customerId);
-			cart.setProduct(productRepository.getOne(serialNum));
-			cart.setQuantity(quantity);
-			cart.setInsertDate(new Date());
-			cart.setUpdateDate(new Date());
-			cart.setInsertUser(customerId.toString());
-			cart.setUpdateUser(customerId.toString());
-
-			cartRepository.save(cart);
-		}
-
-		for (Cart cartinfo : cartInfos) {
-
-			// update
-			if (cartinfo.getProduct().getSerialNum().equals(serialNum)) {
-				Cart cart = cartRepository.findOneByProduct(productRepository.findBySerialNum(serialNum));
-				cart.setQuantity(cart.getQuantity() + quantity);
-				cartRepository.save(cart);
-				// insert
-			} else {
-				Cart cart = new Cart();
-				cart.setCustomerId(customerId);
-				cart.setProduct(productRepository.getOne(serialNum));
-				cart.setQuantity(quantity);
-				cart.setInsertDate(new Date());
-				cart.setUpdateDate(new Date());
-				cart.setInsertUser(customerId.toString());
-				cart.setUpdateUser(customerId.toString());
-
-				cartRepository.save(cart);
-
-			}
-		}
+	public void update(String serialNum, Integer quantity) {
+		Cart cart = cartRepository.findOneByProductAndCustomerId(productRepository.findBySerialNum(serialNum),
+				customerId);
+		cart.setQuantity(cart.getQuantity() + quantity);
+		cartRepository.save(cart);
 	}
 }

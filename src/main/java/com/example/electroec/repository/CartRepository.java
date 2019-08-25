@@ -11,5 +11,5 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 
 	public List<Cart> findAllByCustomerId(Integer customerId);
 
-	public Cart findOneByProduct(Product product);
+	public Cart findOneByProductAndCustomerId(Product product, Integer cutomerId);
 }
