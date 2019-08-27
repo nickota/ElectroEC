@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,9 +80,7 @@ public class ElectroEcController {
 
 	@RequestMapping(path = "/product/{serialNum}/addToCart")
 	@PostMapping
-	public String addToCart(@PathVariable String serialNum) {
-		Integer quantity = new Integer(1);
-
+	public String addToCart(@PathVariable String serialNum, @ModelAttribute("quantity") int quantity) {
 		List<Cart> cartInfos = cartService.findAll(customerId);
 		if (cartInfos.isEmpty()) {
 			cartService.insert(serialNum, quantity);
