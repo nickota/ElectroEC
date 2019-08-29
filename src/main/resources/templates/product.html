@@ -208,7 +208,6 @@
 						<div class="product-preview">
 							<img th:src="|../img/*{sub1}|" alt="">
 						</div>
-
 						<div class="product-preview">
 							<img th:src="|../img/*{sub2}|" alt="">
 						</div>
@@ -254,8 +253,8 @@
 									th:each="i : ${#numbers.sequence(1, 5 - product.rating)}"
 									class="fa fa-star-o"></i>
 							</div>
-							<a th:text="|${reviewCount} Review(s). Add your review|"
-								class="review-link" href="#"></a>
+							<!--<a th:text="|${reviewCount} Review(s). Add your review|"
+								class="review-link" href="#"></a>-->
 						</div>
 						<div>
 							<h3 th:text="|$${#numbers.formatDecimal(product.price, 1, 2)}|"
