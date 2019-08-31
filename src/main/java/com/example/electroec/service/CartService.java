@@ -34,7 +34,7 @@ public class CartService {
 		cart.setInsertUser(customerId.toString());
 		cart.setUpdateUser(customerId.toString());
 
-		cartRepository.save(cart);
+		cartRepository.saveAndFlush(cart);
 	}
 
 	public void update(String serialNum, Integer quantity) {
