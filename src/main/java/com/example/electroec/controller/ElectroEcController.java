@@ -93,6 +93,7 @@ public class ElectroEcController {
 				cartService.update(serialNum, quantity);
 			}
 		}
+
 		return "redirect:/product/{serialNum}";
 	}
 
