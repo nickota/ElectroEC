@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -32,9 +33,10 @@ public class Cart implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "customer_id")
+	@JoinColumn(name = "customer_id")
+	@OneToOne
 	@NotNull
-	private Integer customerId;
+	private Customer customer;
 
 	@JoinColumn(name = "product_serial")
 	@ManyToOne
