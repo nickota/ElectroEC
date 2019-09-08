@@ -5,7 +5,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS brands;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS categories;
-DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS product_status;
@@ -34,7 +34,7 @@ CREATE TABLE brands
 CREATE TABLE cart
 (
 	id int NOT NULL AUTO_INCREMENT COMMENT 'id',
-	customer_id int NOT NULL COMMENT 'customer_id',
+	user_id int NOT NULL COMMENT 'user_id',
 	product_id int NOT NULL COMMENT 'product_id',
 	quantity int DEFAULT 1 NOT NULL COMMENT 'quantity',
 	insert_date datetime DEFAULT CURRENT_TIMESTAMP  NOT NULL COMMENT 'insert_date',
@@ -59,8 +59,8 @@ CREATE TABLE categories
 ) COMMENT = 'categories';
 
 
--- customers
-CREATE TABLE customers
+-- users
+CREATE TABLE users
 (
 	id int NOT NULL AUTO_INCREMENT COMMENT 'id',
 	first_name varchar(255) NOT NULL COMMENT 'first_name',
@@ -80,7 +80,7 @@ CREATE TABLE customers
 	insert_user varchar(255) NOT NULL COMMENT 'insert_user',
 	update_user varchar(255) NOT NULL COMMENT 'update_user',
 	PRIMARY KEY (id)
-) COMMENT = 'customers';
+) COMMENT = 'users';
 
 
 -- images
@@ -158,11 +158,11 @@ CREATE TABLE reviews
 -- wish_lists
 CREATE TABLE wish_lists
 (
-	customer_id int NOT NULL COMMENT 'customer_id',
+	user_id int NOT NULL COMMENT 'user_id',
 	product_id int NOT NULL COMMENT 'product_id',
 	insert_date datetime DEFAULT CURRENT_TIMESTAMP  NOT NULL COMMENT 'insert_date',
 	update_date datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  NOT NULL COMMENT 'update_date',
 	insert_user varchar(255) NOT NULL COMMENT 'insert_user',
 	update_user varchar(255) NOT NULL COMMENT 'update_user',
-	UNIQUE (customer_id, product_id)
+	UNIQUE (user_id, product_id)
 ) COMMENT = 'wish_lists';
