@@ -15,6 +15,7 @@ import com.example.electroec.entity.Cart;
 import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
 import com.example.electroec.entity.Review;
+import com.example.electroec.entity.User;
 import com.example.electroec.service.CartService;
 import com.example.electroec.service.CategoryService;
 import com.example.electroec.service.ProductService;
@@ -32,8 +33,9 @@ public class ElectroEcController {
 	@Autowired
 	private CartService cartService;
 
-	// Customers
-	Integer customerId = new Integer(1);
+	// User
+	// TODO:input user information
+	User user = new User();
 
 	@RequestMapping(path = "/")
 	@GetMapping
@@ -62,7 +64,7 @@ public class ElectroEcController {
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
 		// Cart
-		List<Cart> cart = cartService.findAll(customerId);
+		List<Cart> cart = cartService.findAll(user);
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -82,7 +84,7 @@ public class ElectroEcController {
 	@PostMapping
 	@Transactional(readOnly = false)
 	public String addToCart(@PathVariable String serialNum) {
-		List<Cart> cartInfos = cartService.findAll(customerId);
+		List<Cart> cartInfos = cartService.findAll(user);
 		Integer quantity = new Integer(1);
 		if (cartInfos.isEmpty()) {
 			cartService.insert(serialNum, quantity);
