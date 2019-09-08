@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.electroec.entity.Cart;
+import com.example.electroec.entity.User;
 import com.example.electroec.repository.CartRepository;
 import com.example.electroec.repository.ProductRepository;
 
@@ -18,28 +19,28 @@ public class CartService {
 	@Autowired
 	ProductRepository productRepository;
 
-	public List<Cart> findAll(Integer customerId) {
-		return cartRepository.findAllByCustomerId(customerId);
+	public List<Cart> findAll(User user) {
+		return cartRepository.findAllByUser(user);
 	}
 
-	Integer customerId = new Integer(1);
+	// TODO:imput user information
+	User user = new User();
 
 	public void insert(String serialNum, Integer quantity) {
 		Cart cart = new Cart();
-		cart.setCustomerId(customerId);
+		cart.setUser(user);
 		cart.setProduct(productRepository.getOne(serialNum));
 		cart.setQuantity(quantity);
 		cart.setInsertDate(new Date());
 		cart.setUpdateDate(new Date());
-		cart.setInsertUser(customerId.toString());
-		cart.setUpdateUser(customerId.toString());
+		cart.setInsertUser(user.getId().toString());
+		cart.setUpdateUser(user.getId().toString());
 
 		cartRepository.saveAndFlush(cart);
 	}
 
 	public void update(String serialNum, Integer quantity) {
-		Cart cart = cartRepository.findOneByProductAndCustomerId(productRepository.findBySerialNum(serialNum),
-				customerId);
+		Cart cart = cartRepository.findOneByProductAndUser(productRepository.findBySerialNum(serialNum), user);
 		cart.setQuantity(cart.getQuantity() + quantity);
 		cartRepository.save(cart);
 	}

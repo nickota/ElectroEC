@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.electroec.entity.Cart;
 import com.example.electroec.entity.Product;
+import com.example.electroec.entity.User;
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 
-	public List<Cart> findAllByCustomerId(Integer customerId);
+	public List<Cart> findAllByUser(User user);
 
-	public Cart findOneByProductAndCustomerId(Product product, Integer cutomerId);
+	public Cart findOneByProductAndUser(Product product, User user);
 }
