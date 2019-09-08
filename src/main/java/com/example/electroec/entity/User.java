@@ -15,14 +15,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Customer entity class.
+ * User entity class.
  * 
  */
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "customers")
-public class Customer implements Serializable {
+@Table(name = "users")
+public class User implements Serializable {
 
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -119,7 +119,7 @@ public class Customer implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Customer other = (Customer) obj;
+		User other = (User) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;

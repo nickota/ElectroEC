@@ -33,10 +33,10 @@ public class Cart implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@JoinColumn(name = "customer_id")
+	@JoinColumn(name = "user_id")
 	@OneToOne
 	@NotNull
-	private Customer customer;
+	private User user;
 
 	@JoinColumn(name = "product_serial")
 	@ManyToOne
