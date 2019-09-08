@@ -87,12 +87,12 @@ public class ElectroEcController {
 		List<Cart> cartInfos = cartService.findAll(user);
 		Integer quantity = new Integer(1);
 		if (cartInfos.isEmpty()) {
-			cartService.insert(serialNum, quantity);
+			cartService.insert(productService.findOne(serialNum), quantity);
 		}
 
 		for (Cart cartInfo : cartInfos) {
 			if (cartInfo.getProduct().getSerialNum().equals(serialNum)) {
-				cartService.update(serialNum, quantity);
+				cartService.update(productService.findOne(serialNum), quantity);
 			}
 		}
 

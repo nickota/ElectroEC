@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.electroec.entity.Cart;
+import com.example.electroec.entity.Product;
 import com.example.electroec.entity.User;
 import com.example.electroec.repository.CartRepository;
 import com.example.electroec.repository.ProductRepository;
@@ -26,10 +27,10 @@ public class CartService {
 	// TODO:imput user information
 	User user = new User();
 
-	public void insert(String serialNum, Integer quantity) {
+	public void insert(Product product, Integer quantity) {
 		Cart cart = new Cart();
 		cart.setUser(user);
-		cart.setProduct(productRepository.getOne(serialNum));
+		cart.setProduct(product);
 		cart.setQuantity(quantity);
 		cart.setInsertDate(new Date());
 		cart.setUpdateDate(new Date());
@@ -39,8 +40,8 @@ public class CartService {
 		cartRepository.saveAndFlush(cart);
 	}
 
-	public void update(String serialNum, Integer quantity) {
-		Cart cart = cartRepository.findOneByProductAndUser(productRepository.findBySerialNum(serialNum), user);
+	public void update(Product product, Integer quantity) {
+		Cart cart = cartRepository.findOneByProductAndUser(product, user);
 		cart.setQuantity(cart.getQuantity() + quantity);
 		cartRepository.save(cart);
 	}
