@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.electroec.entity.Cart;
@@ -64,7 +62,7 @@ public class ElectroEcController {
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
 		// Cart
-		List<Cart> cart = cartService.findAll(user);
+//		List<Cart> cart = cartService.findAll(user);
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -73,31 +71,25 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
-		model.addAttribute("cart", cart);
-		model.addAttribute("totalQuantity", totalQuantity(cart));
-		model.addAttribute("subTotal", calculateSubTotal(cart));
+//		model.addAttribute("cart", cart);
+//		model.addAttribute("totalQuantity", totalQuantity(cart));
+//		model.addAttribute("subTotal", calculateSubTotal(cart));
 
 		return "product";
 	}
 
-	@RequestMapping(path = "/product/{serialNum}/addToCart")
-	@PostMapping
-	@Transactional(readOnly = false)
-	public String addToCart(@PathVariable String serialNum) {
-		List<Cart> cartInfos = cartService.findAll(user);
-		Integer quantity = new Integer(1);
-		if (cartInfos.isEmpty()) {
-			cartService.insert(productService.findOne(serialNum), quantity);
-		}
-
-		for (Cart cartInfo : cartInfos) {
-			if (cartInfo.getProduct().getSerialNum().equals(serialNum)) {
-				cartService.update(productService.findOne(serialNum), quantity);
-			}
-		}
-
-		return "redirect:/product/{serialNum}";
-	}
+//	@RequestMapping(path = "/product/{serialNum}/addToCart")
+//	@PostMapping
+//	@Transactional(readOnly = false)
+//	public String addToCart(@PathVariable String serialNum) {
+//		Cart cart = user.getCart();
+//		Integer quantity = new Integer(1);
+//		if (cart == null) {
+//			cartService.insert(productService.findOne(serialNum), quantity);
+//		}
+//
+//		return "redirect:/product/{serialNum}";
+//	}
 
 	// Calculates the total quantity included in the cart.
 	private int totalQuantity(List<Cart> cart) {
