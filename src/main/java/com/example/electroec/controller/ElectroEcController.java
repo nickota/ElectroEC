@@ -14,7 +14,6 @@ import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
 import com.example.electroec.entity.Review;
 import com.example.electroec.entity.User;
-import com.example.electroec.service.CartService;
 import com.example.electroec.service.CategoryService;
 import com.example.electroec.service.ProductService;
 import com.example.electroec.service.ReviewService;
@@ -28,8 +27,6 @@ public class ElectroEcController {
 	private ReviewService reviewService;
 	@Autowired
 	private CategoryService categoryService;
-	@Autowired
-	private CartService cartService;
 
 	// User
 	// TODO:input user information
