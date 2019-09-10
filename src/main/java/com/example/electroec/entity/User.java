@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class User implements Serializable {
 
@@ -52,7 +54,7 @@ public class User implements Serializable {
 
 	@Column(name = "tel")
 	@NotNull
-	private Integer tel;
+	private String tel;
 
 	@Column(name = "email")
 	@NotNull
@@ -61,19 +63,6 @@ public class User implements Serializable {
 	@Column(name = "zip")
 	@NotNull
 	private Integer zip;
-
-	@Column(name = "img01")
-	private String img01;
-
-	@Column(name = "img02")
-	private String img02;
-
-	@Column(name = "img03")
-	private String img03;
-
-	@Column(name = "status")
-	@NotNull
-	private Integer status;
 
 	@Column(name = "insert_date")
 	@NotNull
