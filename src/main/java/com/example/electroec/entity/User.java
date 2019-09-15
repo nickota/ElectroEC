@@ -11,7 +11,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,7 +21,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "users")
 public class User implements Serializable {
 
@@ -34,7 +32,7 @@ public class User implements Serializable {
 	@GeneratedValue
 	private Integer id;
 
-	@Column(name = "fist_name")
+	@Column(name = "first_name")
 	@NotNull
 	private String firstName;
 
@@ -80,7 +78,7 @@ public class User implements Serializable {
 	@NotNull
 	private String updateUser;
 
-	@OneToOne
+	@OneToOne(mappedBy = "user")
 	private Cart cart;
 
 	/**
