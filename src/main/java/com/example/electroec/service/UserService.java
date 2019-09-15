@@ -13,6 +13,6 @@ public class UserService {
 	UserRepository userRepository;
 
 	public User findOne(Integer id) {
-		return userRepository.findOne(id);
+		return userRepository.findOneById(id);
 	}
 }
