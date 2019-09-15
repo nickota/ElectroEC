@@ -17,6 +17,7 @@ import com.example.electroec.entity.User;
 import com.example.electroec.service.CategoryService;
 import com.example.electroec.service.ProductService;
 import com.example.electroec.service.ReviewService;
+import com.example.electroec.service.UserService;
 
 @Controller
 public class ElectroEcController {
@@ -27,10 +28,8 @@ public class ElectroEcController {
 	private ReviewService reviewService;
 	@Autowired
 	private CategoryService categoryService;
-
-	// User
-	// TODO:input user information
-	User user = new User();
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(path = "/")
 	@GetMapping
@@ -51,7 +50,8 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
-
+		// User
+		User user = userService.findOne(1);
 		// Products
 		Product product = productService.findOne(serialNum);
 		// Reviews
@@ -59,8 +59,7 @@ public class ElectroEcController {
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
 		// Cart
-//		List<Cart> cart = cartService.findAll(user);
-
+//		Cart cart = user.getCart();
 		// Add to model
 		model.addAttribute("product", product);
 		model.addAttribute("status", product.getStatus().getName());
