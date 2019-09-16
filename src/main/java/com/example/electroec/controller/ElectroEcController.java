@@ -38,6 +38,7 @@ public class ElectroEcController {
 	public String index(Model model) {
 		Iterable<Product> products = productService.findAll();
 		model.addAttribute("products", products);
+
 		return "top";
 	}
 
@@ -69,16 +70,16 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
-//		model.addAttribute("cart", cart);
+//		model.addAttribute("cart", cart); 
 //		model.addAttribute("totalQuantity", totalQuantity(cart));
-//		model.addAttribute("subTotal", calculateSubTotal(cart));
+//		model.addAttribute("subTotal", calculateSubTotal(cart)); 
 
 		return "product";
 	}
 
 //	@RequestMapping(path = "/product/{serialNum}/addToCart")
 //	@PostMapping
-//	@Transactional(readOnly = false)
+//	@Transactional(readOnly = false) 
 //	public String addToCart(@PathVariable String serialNum) {
 //		Cart cart = user.getCart();
 //		Integer quantity = new Integer(1);
