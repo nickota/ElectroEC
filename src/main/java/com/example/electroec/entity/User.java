@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -62,6 +63,11 @@ public class User implements Serializable {
 	@NotNull
 	private Integer zip;
 
+	@JoinColumn(name = "cart_id")
+	@OneToOne
+	@NotNull
+	private Cart cart;
+
 	@Column(name = "insert_date")
 	@NotNull
 	private Date insertDate;
@@ -77,9 +83,6 @@ public class User implements Serializable {
 	@Column(name = "update_user")
 	@NotNull
 	private String updateUser;
-
-	@OneToOne(mappedBy = "user")
-	private Cart cart;
 
 	/**
 	 * {@inheritDoc}
