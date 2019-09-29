@@ -2,11 +2,13 @@ package com.example.electroec.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -69,6 +71,9 @@ public class Product implements Serializable {
 
 	@Column(name = "sub3")
 	private String sub3;
+
+	@ManyToMany
+	List<Cart> carts;
 
 	@Column(name = "insert_date")
 	@NotNull
