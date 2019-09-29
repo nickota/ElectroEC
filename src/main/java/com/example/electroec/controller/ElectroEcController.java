@@ -91,21 +91,21 @@ public class ElectroEcController {
 //	}
 
 	// Calculates the total quantity included in the cart.
-	private int totalQuantity(List<Cart> cart) {
-		int totalQuantity = 0;
-		for (Cart cartInfo : cart) {
-			totalQuantity += cartInfo.getQuantity();
-		}
-		return totalQuantity;
-	}
+//	private int totalQuantity(List<Cart> cart) {
+//		int totalQuantity = 0;
+//		for (Cart cartInfo : cart) {
+//			totalQuantity += cartInfo.getQuantity();
+//		}
+//		return totalQuantity;
+//	}
 
 	// Calculates the subtotal to show on cart.
-	private double calculateSubTotal(List<Cart> cart) {
-		double subTotal = 0.00;
-		for (Cart cartInfo : cart) {
-			subTotal += cartInfo.getProduct().getPrice() * cartInfo.getQuantity();
-		}
-		return subTotal;
-	}
+//	private double calculateSubTotal(List<Cart> cart) {
+//		double subTotal = 0.00;
+//		for (Cart cartInfo : cart) {
+//			subTotal += cartInfo.getProduct().getPrice() * cartInfo.getQuantity();
+//		}
+//		return subTotal;
+//	}
 
 }
