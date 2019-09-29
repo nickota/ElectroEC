@@ -70,7 +70,7 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
-//		model.addAttribute("cart", cart);
+		model.addAttribute("cart", cart);
 //		model.addAttribute("totalQuantity", totalQuantity(cart));
 //		model.addAttribute("subTotal", calculateSubTotal(cart));
 
