@@ -6,6 +6,4 @@ import com.example.electroec.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	public User findOneById(Integer id);
-
 }
