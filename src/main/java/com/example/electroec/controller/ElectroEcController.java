@@ -62,7 +62,7 @@ public class ElectroEcController {
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
 		// Cart
-		Cart cart = user.getCart();
+		List<Cart> cart = user.getCartContents();
 		// Add to model
 		model.addAttribute("product", product);
 		model.addAttribute("status", product.getStatus().getName());

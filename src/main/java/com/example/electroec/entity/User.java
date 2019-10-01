@@ -2,13 +2,14 @@ package com.example.electroec.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -64,9 +65,9 @@ public class User implements Serializable {
 	private Integer zip;
 
 	@JoinColumn(name = "cart_id")
-	@OneToOne
+	@OneToMany
 	@NotNull
-	private Cart cart;
+	private List<Cart> cartContents;
 
 	@Column(name = "insert_date")
 	@NotNull

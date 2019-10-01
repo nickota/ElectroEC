@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -43,7 +43,7 @@ public class Cart implements Serializable {
 	@NotNull
 	private Integer quantity;
 
-	@OneToOne(mappedBy = "cart")
+	@ManyToOne
 	private User user;
 
 	@Column(name = "insert_date")
