@@ -54,7 +54,7 @@ public class ElectroEcController {
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
 		// User
-		User user = userService.getOne(userId);
+		User user = userService.findOne(userId);
 		// Products
 		Product product = productService.findOne(serialNum);
 		// Reviews
