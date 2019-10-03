@@ -12,7 +12,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	public User getOne(Integer id) {
-		return userRepository.getOne(id);
+	public User findOne(Integer id) {
+		return userRepository.findOneById(id);
 	}
 }

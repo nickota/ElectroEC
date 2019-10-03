@@ -54,7 +54,7 @@ public class ElectroEcController {
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
 		// User
-		User user = userService.findOne(userId);
+		User user = userService.getOne(userId);
 		// Products
 		Product product = productService.findOne(serialNum);
 		// Reviews
@@ -62,7 +62,7 @@ public class ElectroEcController {
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
 		// Cart
-		List<Cart> cart = user.getCartContents();
+		Cart cart = user.getCart();
 		// Add to model
 		model.addAttribute("product", product);
 		model.addAttribute("status", product.getStatus().getName());
@@ -72,7 +72,7 @@ public class ElectroEcController {
 		model.addAttribute("productCategory", product.getCategory().getName());
 		model.addAttribute("cart", cart);
 //		model.addAttribute("totalQuantity", totalQuantity(cart));
-//		model.addAttribute("subTotal", calculateSubTotal(cart));
+//		model.addAttribute("subTotal", calculateSubTotal(cart)); 
 
 		return "product";
 	}

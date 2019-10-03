@@ -2,29 +2,25 @@ package com.example.electroec.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Cart entity class.
+ * CartItems entity class.
  * 
  */
 @Entity
 @Data
 @NoArgsConstructor
-public class Cart implements Serializable {
+public class CartItems implements Serializable {
 
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -34,17 +30,17 @@ public class Cart implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@JoinColumn(name = "product_serial")
-	@ManyToMany
+	@Column(name = "user_id")
 	@NotNull
-	List<Product> products;
+	private Integer userId;
+
+	@Column(name = "product_serial")
+	@NotNull
+	private String productSerial;
 
 	@Column(name = "quantity")
 	@NotNull
 	private Integer quantity;
-
-	@ManyToOne
-	private User user;
 
 	@Column(name = "insert_date")
 	@NotNull
@@ -87,7 +83,7 @@ public class Cart implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Cart other = (Cart) obj;
+		CartItems other = (CartItems) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;
