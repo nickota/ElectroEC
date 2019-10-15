@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.electroec.entity.Cart;
+import com.example.electroec.entity.CartItems;
 import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
 import com.example.electroec.entity.Review;
-import com.example.electroec.entity.User;
+import com.example.electroec.service.CartService;
 import com.example.electroec.service.CategoryService;
 import com.example.electroec.service.ProductService;
 import com.example.electroec.service.ReviewService;
-import com.example.electroec.service.UserService;
 
 @Controller
 public class ElectroEcController {
@@ -29,7 +28,7 @@ public class ElectroEcController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
-	private UserService userService;
+	private CartService cartService;
 
 	Integer userId = new Integer(1);
 
@@ -53,10 +52,8 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
-		// User
-		User user = userService.getOne(userId);
 		// Products
-		Product product = productService.findOne(serialNum);
+		Product product = productService.getOne(serialNum);
 		// Reviews
 		List<Review> reviews = reviewService.findAll(serialNum);
 		// Categories
@@ -71,7 +68,7 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
-		model.addAttribute("cart", cart);
+		model.addAttribute("cartItems", cartItems);
 //		model.addAttribute("totalQuantity", totalQuantity(cart));
 //		model.addAttribute("subTotal", calculateSubTotal(cart)); 
 
