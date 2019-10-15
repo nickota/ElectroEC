@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -62,11 +60,6 @@ public class User implements Serializable {
 	@Column(name = "zip")
 	@NotNull
 	private Integer zip;
-
-	@JoinColumn(name = "cart_id")
-	@OneToOne
-	@NotNull
-	private Cart cart;
 
 	@Column(name = "insert_date")
 	@NotNull
