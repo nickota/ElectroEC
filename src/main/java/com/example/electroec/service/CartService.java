@@ -1,8 +1,11 @@
 package com.example.electroec.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.electroec.entity.CartItems;
 import com.example.electroec.entity.User;
 import com.example.electroec.repository.CartRepository;
 import com.example.electroec.repository.ProductRepository;
@@ -17,6 +20,10 @@ public class CartService {
 
 	// TODO:imput user information
 	User user = new User();
+
+	public List<CartItems> findByUserId(Integer userId) {
+		return cartRepository.findByUserId(userId);
+	}
 
 //	public void insert(Product product, Integer quantity) {
 //		Cart cart = new Cart();
