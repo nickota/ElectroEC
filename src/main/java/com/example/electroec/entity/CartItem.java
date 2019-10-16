@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "cartitems")
-public class CartItems implements Serializable {
+public class CartItem implements Serializable {
 
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -85,7 +85,7 @@ public class CartItems implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		CartItems other = (CartItems) obj;
+		CartItem other = (CartItem) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;

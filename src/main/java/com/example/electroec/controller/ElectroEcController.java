@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.electroec.entity.CartItems;
+import com.example.electroec.entity.CartItem;
 import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
 import com.example.electroec.entity.Review;
@@ -59,7 +59,7 @@ public class ElectroEcController {
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
 		// Cart
-		List<CartItems> cartItems = cartService.findByUserId(userId);
+		List<CartItem> cartItems = cartService.findByUserId(userId);
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -89,9 +89,9 @@ public class ElectroEcController {
 //	}
 
 	// Calculates the total quantity included in the cart.
-	private int totalQuantity(List<CartItems> cartItems) {
+	private int totalQuantity(List<CartItem> cartItems) {
 		int totalQuantity = 0;
-		for (CartItems cartItem : cartItems) {
+		for (CartItem cartItem : cartItems) {
 			totalQuantity += cartItem.getQuantity();
 		}
 		return totalQuantity;
