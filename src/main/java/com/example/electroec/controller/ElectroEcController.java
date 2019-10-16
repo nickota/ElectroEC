@@ -69,7 +69,7 @@ public class ElectroEcController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
 		model.addAttribute("cartItems", cartItems);
-//		model.addAttribute("totalQuantity", totalQuantity(cart));
+		model.addAttribute("totalQuantity", totalQuantity(cartItems));
 //		model.addAttribute("subTotal", calculateSubTotal(cart)); 
 
 		return "product";
@@ -89,13 +89,13 @@ public class ElectroEcController {
 //	}
 
 	// Calculates the total quantity included in the cart.
-//	private int totalQuantity(List<Cart> cart) {
-//		int totalQuantity = 0;
-//		for (Cart cartInfo : cart) {
-//			totalQuantity += cartInfo.getQuantity();
-//		}
-//		return totalQuantity;
-//	}
+	private int totalQuantity(List<CartItems> cartItems) {
+		int totalQuantity = 0;
+		for (CartItems cartItem : cartItems) {
+			totalQuantity += cartItem.getQuantity();
+		}
+		return totalQuantity;
+	}
 
 	// Calculates the subtotal to show on cart.
 //	private double calculateSubTotal(List<Cart> cart) {
