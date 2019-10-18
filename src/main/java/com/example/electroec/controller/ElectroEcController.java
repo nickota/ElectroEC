@@ -1,5 +1,6 @@
 package com.example.electroec.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.electroec.dto.CartDTO;
 import com.example.electroec.entity.CartItem;
 import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
@@ -60,6 +62,15 @@ public class ElectroEcController {
 		Iterable<Category> categories = categoryService.findAll();
 		// Cart
 		List<CartItem> cartItems = cartService.findByUserId(userId);
+		List<CartDTO> cartDTOs = new ArrayList<CartDTO>();
+
+		for (CartItem cartItem : cartItems) {
+			CartDTO cartDTO = new CartDTO();
+			cartDTO.setUserId(userId);
+			cartDTO.setProduct(productService.getOne(cartItem.getProductSerial()));
+			cartDTO.setQuantity(cartItem.getQuantity());
+			cartDTOs.add(cartDTO);
+		}
 
 		// Add to model
 		model.addAttribute("product", product);
@@ -68,7 +79,7 @@ public class ElectroEcController {
 		model.addAttribute("reviewCount", reviews.size());
 		model.addAttribute("categories", categories);
 		model.addAttribute("productCategory", product.getCategory().getName());
-		model.addAttribute("cartItems", cartItems);
+		model.addAttribute("cartItems", cartDTOs);
 		model.addAttribute("totalQuantity", totalQuantity(cartItems));
 		model.addAttribute("subTotal", calculateSubTotal(cartItems));
 
