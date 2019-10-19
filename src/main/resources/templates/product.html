@@ -64,7 +64,7 @@
 				<!-- row -->
 				<div class="row">
 					<!-- LOGO -->
-					
+
 					<div class="col-md-3">
 						<div class="header-logo">
 							<a href="#" class="logo"> <img src="../img/logo.png" alt="">
@@ -99,8 +99,8 @@
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
-										<div th:each="cartInfo : ${cart}"
-											th:object="${cartInfo.product}" class="product-widget">
+										<div th:each="cartItem : ${cartItems}"
+											th:object="${cartItem.product}" class="product-widget">
 											<div class="product-img">
 												<img th:src="|../img/*{main}|" alt="">
 											</div>
@@ -109,8 +109,8 @@
 													<a th:text=*{name} href="#"></a>
 												</h3>
 												<h4 class="product-price">
-													<span th:text="|${cartInfo.quantity}x|" class="qty"></span><span
-														th:text="|$${#numbers.formatDecimal(cartInfo.product.price, 1, 2)}|"></span>
+													<span th:text="|${cartItem.quantity}x|" class="qty"></span><span
+														th:text="|$${#numbers.formatDecimal(cartItem.product.price, 1, 2)}|"></span>
 												</h4>
 											</div>
 											<button class="delete">
@@ -428,7 +428,7 @@
 									<!-- /Reviews -->
 
 									<!-- Review Form -->
-									<div class="col-md-3"> 
+									<div class="col-md-3">
 										<div id="review-form">
 											<form class="review-form">
 												<input class="input" type="text" placeholder="Your Name">
