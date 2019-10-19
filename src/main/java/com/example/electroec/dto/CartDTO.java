@@ -2,11 +2,10 @@ package com.example.electroec.dto;
 
 import com.example.electroec.entity.Product;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class CartDTO {
-
 	private Integer userId;
 	private Product product;
 	private Integer quantity;
