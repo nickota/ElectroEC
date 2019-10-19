@@ -1,5 +1,6 @@
 package com.example.electroec.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import com.example.electroec.entity.CartItem;
 import com.example.electroec.entity.User;
 import com.example.electroec.repository.CartItemRepository;
 import com.example.electroec.repository.ProductRepository;
+import com.example.electroec.repository.UserRepository;
 
 @Service
 public class CartItemService {
@@ -17,30 +19,42 @@ public class CartItemService {
 	CartItemRepository cartItemRepository;
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	UserRepository userRepository;
 
-	// TODO:imput user information
-	User user = new User();
+	Integer userId = 1;
 
 	public List<CartItem> findByUserId(Integer userId) {
 		return cartItemRepository.findByUserId(userId);
 	}
 
-//	public void insert(Product product, Integer quantity) {
-//		CartItem cartItem = new CartItem();
-//		cartItem.setUser(user);
-//		cartItem.setProduct(product);
-//		cartItem.setQuantity(quantity);
-//		cartItem.setInsertDate(new Date());
-//		cartItem.setUpdateDate(new Date());
-//		cartItem.setInsertUser(user.getId().toString());
-//		cartItem.setUpdateUser(user.getId().toString());
-//
-//		cartRepository.saveAndFlush(cartItem);
-//	}
+	/**
+	 * Update CartItem table.
+	 * 
+	 * If there is a same product in the cart, it will update the quantity. If there
+	 * isn't, it will make a new record.
+	 * 
+	 * @param productSerial
+	 * @param quantity
+	 */
+	public void add(String productSerial, Integer quantity) {
+		User user = userRepository.getOne(userId);
+		CartItem targetCartItem = cartItemRepository.findOneByUserIdAndProductSerial(userId, productSerial);
 
-//	public void update(Product product, Integer quantity) {
-//		Cart cart = cartRepository.findOneByProductAndUser(product, user);
-//		cart.setQuantity(cart.getQuantity() + quantity);
-//		cartRepository.save(cart);
-//	}
+		if (targetCartItem == null) {
+			CartItem cartItem = new CartItem();
+			cartItem.setUserId(userId);
+			cartItem.setProductSerial(productSerial);
+			cartItem.setQuantity(quantity);
+			cartItem.setInsertDate(new Date());
+			cartItem.setUpdateDate(new Date());
+			cartItem.setInsertUser(user.getFirstName() + user.getLastName());
+			cartItem.setUpdateUser(user.getFirstName() + user.getLastName());
+			cartItemRepository.saveAndFlush(cartItem);
+		} else {
+			CartItem cartItem = cartItemRepository.findOneByUserIdAndProductSerial(userId, productSerial);
+			cartItem.setQuantity(cartItem.getQuantity() + quantity);
+			cartItemRepository.saveAndFlush(cartItem);
+		}
+	}
 }

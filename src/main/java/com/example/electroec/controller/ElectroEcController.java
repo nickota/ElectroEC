@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.electroec.dto.CartDTO;
@@ -87,18 +89,18 @@ public class ElectroEcController {
 		return "product";
 	}
 
-//	@RequestMapping(path = "/product/{serialNum}/addToCart")
-//	@PostMapping
-//	@Transactional(readOnly = false)
-//	public String addToCart(@PathVariable String serialNum) {
-//		Cart cart = user.getCart();
-//		Integer quantity = new Integer(1);
-//		if (cart == null) {
-//			cartService.insert(productService.findOne(serialNum), quantity);
-//		}
-//
-//		return "redirect:/product/{serialNum}";
-//	}
+	@RequestMapping(path = "/product/{serialNum}/addToCart")
+	@PostMapping
+	@Transactional(readOnly = false)
+	public String addToCart(@PathVariable String serialNum) {
+		// TODO:receive from html
+		Integer quantity = new Integer(1);
+
+		// add product to cart
+		cartItemService.add(serialNum, quantity);
+
+		return "redirect:/product/{serialNum}";
+	}
 
 	// Calculates the total quantity included in the cart.
 	private int totalQuantity(List<CartItem> cartItems) {
@@ -109,7 +111,7 @@ public class ElectroEcController {
 		return totalQuantity;
 	}
 
-	// Calculates the subtotal to show on cart.
+	// Calculates the subtotal to show on the cart.
 	private double calculateSubTotal(List<CartDTO> cartDTOs) {
 		double subTotal = 0.00;
 		for (CartDTO cartDTO : cartDTOs) {
