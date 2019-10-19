@@ -54,21 +54,22 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
+
 		// Products
 		Product product = productService.getOne(serialNum);
+
 		// Reviews
 		List<Review> reviews = reviewService.findAll(serialNum);
+
 		// Categories
 		Iterable<Category> categories = categoryService.findAll();
+
 		// Cart
 		List<CartItem> cartItems = cartService.findByUserId(userId);
 		List<CartDTO> cartDTOs = new ArrayList<CartDTO>();
-
 		for (CartItem cartItem : cartItems) {
-			CartDTO cartDTO = new CartDTO();
-			cartDTO.setUserId(userId);
-			cartDTO.setProduct(productService.getOne(cartItem.getProductSerial()));
-			cartDTO.setQuantity(cartItem.getQuantity());
+			CartDTO cartDTO = new CartDTO(userId, productService.getOne(cartItem.getProductSerial()),
+					cartItem.getQuantity());
 			cartDTOs.add(cartDTO);
 		}
 
@@ -81,7 +82,7 @@ public class ElectroEcController {
 		model.addAttribute("productCategory", product.getCategory().getName());
 		model.addAttribute("cartItems", cartDTOs);
 		model.addAttribute("totalQuantity", totalQuantity(cartItems));
-		model.addAttribute("subTotal", calculateSubTotal(cartItems));
+		model.addAttribute("subTotal", calculateSubTotal(cartDTOs));
 
 		return "product";
 	}
@@ -109,10 +110,10 @@ public class ElectroEcController {
 	}
 
 	// Calculates the subtotal to show on cart.
-	private double calculateSubTotal(List<CartItem> cartItems) {
+	private double calculateSubTotal(List<CartDTO> cartDTOs) {
 		double subTotal = 0.00;
-		for (CartItem cartItem : cartItems) {
-			subTotal += productService.getOne(cartItem.getProductSerial()).getPrice() * cartItem.getQuantity();
+		for (CartDTO cartDTO : cartDTOs) {
+			subTotal += cartDTO.getProduct().getPrice() * cartDTO.getQuantity();
 		}
 		return subTotal;
 	}
