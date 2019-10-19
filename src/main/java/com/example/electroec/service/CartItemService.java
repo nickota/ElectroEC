@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.example.electroec.entity.CartItem;
 import com.example.electroec.entity.User;
-import com.example.electroec.repository.CartRepository;
+import com.example.electroec.repository.CartItemRepository;
 import com.example.electroec.repository.ProductRepository;
 
 @Service
-public class CartService {
+public class CartItemService {
 
 	@Autowired
-	CartRepository cartRepository;
+	CartItemRepository cartItemRepository;
 	@Autowired
 	ProductRepository productRepository;
 
@@ -22,20 +22,20 @@ public class CartService {
 	User user = new User();
 
 	public List<CartItem> findByUserId(Integer userId) {
-		return cartRepository.findByUserId(userId);
+		return cartItemRepository.findByUserId(userId);
 	}
 
 //	public void insert(Product product, Integer quantity) {
-//		Cart cart = new Cart();
-//		cart.setUser(user);
-//		cart.setProduct(product);
-//		cart.setQuantity(quantity);
-//		cart.setInsertDate(new Date());
-//		cart.setUpdateDate(new Date());
-//		cart.setInsertUser(user.getId().toString());
-//		cart.setUpdateUser(user.getId().toString());
+//		CartItem cartItem = new CartItem();
+//		cartItem.setUser(user);
+//		cartItem.setProduct(product);
+//		cartItem.setQuantity(quantity);
+//		cartItem.setInsertDate(new Date());
+//		cartItem.setUpdateDate(new Date());
+//		cartItem.setInsertUser(user.getId().toString());
+//		cartItem.setUpdateUser(user.getId().toString());
 //
-//		cartRepository.saveAndFlush(cart);
+//		cartRepository.saveAndFlush(cartItem);
 //	}
 
 //	public void update(Product product, Integer quantity) {

@@ -15,7 +15,7 @@ import com.example.electroec.entity.CartItem;
 import com.example.electroec.entity.Category;
 import com.example.electroec.entity.Product;
 import com.example.electroec.entity.Review;
-import com.example.electroec.service.CartService;
+import com.example.electroec.service.CartItemService;
 import com.example.electroec.service.CategoryService;
 import com.example.electroec.service.ProductService;
 import com.example.electroec.service.ReviewService;
@@ -30,7 +30,7 @@ public class ElectroEcController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
-	private CartService cartService;
+	private CartItemService cartItemService;
 
 	Integer userId = new Integer(1);
 
@@ -65,7 +65,7 @@ public class ElectroEcController {
 		Iterable<Category> categories = categoryService.findAll();
 
 		// Cart
-		List<CartItem> cartItems = cartService.findByUserId(userId);
+		List<CartItem> cartItems = cartItemService.findByUserId(userId);
 		List<CartDTO> cartDTOs = new ArrayList<CartDTO>();
 		for (CartItem cartItem : cartItems) {
 			CartDTO cartDTO = new CartDTO(userId, productService.getOne(cartItem.getProductSerial()),
