@@ -1,7 +1,7 @@
 package com.example.electroec.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,11 +63,11 @@ public class User implements Serializable {
 
 	@Column(name = "insert_date")
 	@NotNull
-	private Date insertDate;
+	private LocalDateTime insertDate;
 
 	@Column(name = "update_date")
 	@NotNull
-	private Date updateDate;
+	private LocalDateTime updateDate;
 
 	@Column(name = "insert_user")
 	@NotNull
