@@ -1,6 +1,5 @@
 package com.example.electroec.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,22 +40,13 @@ public class CartItemService {
 	 */
 	public void add(String productSerial, Integer quantity) {
 		User user = userRepository.getOne(userId);
-		CartItem targetCartItem = cartItemRepository.findOneByUserIdAndProductSerial(userId, productSerial);
+		CartItem cartItem = cartItemRepository.findOneByUserIdAndProductSerial(userId, productSerial);
 
-		if (targetCartItem == null) {
-			CartItem cartItem = new CartItem();
-			cartItem.setUserId(userId);
-			cartItem.setProductSerial(productSerial);
-			cartItem.setQuantity(quantity);
-			cartItem.setInsertDate(new Date());
-			cartItem.setUpdateDate(new Date());
-			cartItem.setInsertUser(user.getFirstName() + user.getLastName());
-			cartItem.setUpdateUser(user.getFirstName() + user.getLastName());
-			cartItemRepository.saveAndFlush(cartItem);
+		if (cartItem == null) {
+			cartItem = new CartItem(userId, productSerial, quantity, user.getFirstName() + user.getLastName());
 		} else {
-			CartItem cartItem = cartItemRepository.findOneByUserIdAndProductSerial(userId, productSerial);
 			cartItem.setQuantity(cartItem.getQuantity() + quantity);
-			cartItemRepository.saveAndFlush(cartItem);
 		}
+		cartItemRepository.saveAndFlush(cartItem);
 	}
 }
