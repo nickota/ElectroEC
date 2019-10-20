@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "cartitems")
 public class CartItem implements Serializable {
 
@@ -59,6 +61,11 @@ public class CartItem implements Serializable {
 	@Column(name = "update_user")
 	@NotNull
 	private String updateUser;
+
+	public CartItem(@NotNull Integer userId, @NotNull String productSerial, @NotNull Integer quantity,
+			@NotNull String insertUser) {
+		this(null, userId, productSerial, quantity, LocalDateTime.now(), LocalDateTime.now(), insertUser, insertUser);
+	}
 
 	/**
 	 * {@inheritDoc}
