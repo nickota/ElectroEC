@@ -31,8 +31,8 @@ public class CartItemService {
 	/**
 	 * Update CartItem table.
 	 * 
-	 * If there is a same product in the cart, it will update the quantity. If there
-	 * isn't, it will make a new record.
+	 * If there is a same product in the cart, it will update the quantity. <br>
+	 * If there isn't, it will make a new record.
 	 * 
 	 * @param productSerial
 	 * @param quantity
