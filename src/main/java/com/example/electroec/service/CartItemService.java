@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.electroec.entity.CartItem;
 import com.example.electroec.entity.User;
@@ -13,6 +14,7 @@ import com.example.electroec.repository.ProductRepository;
 import com.example.electroec.repository.UserRepository;
 
 @Service
+@Transactional(readOnly = false)
 public class CartItemService {
 
 	@Autowired
