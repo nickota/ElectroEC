@@ -94,7 +94,7 @@ public class ElectroEcController {
 		// TODO:receive from html
 		Integer quantity = new Integer(1);
 
-		// add product to cart
+		// Add product to cart
 		cartItemService.add(serialNum, quantity);
 
 		return "redirect:/product/{serialNum}";
