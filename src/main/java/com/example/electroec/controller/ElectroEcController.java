@@ -73,6 +73,7 @@ public class ElectroEcController {
 					cartItem.getQuantity());
 			cartDTOs.add(cartDTO);
 		}
+
 		// Add to model
 		model.addAttribute("product", product);
 		model.addAttribute("status", product.getStatus().getName());
