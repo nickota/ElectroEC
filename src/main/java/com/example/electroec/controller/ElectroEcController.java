@@ -54,7 +54,6 @@ public class ElectroEcController {
 	@RequestMapping(path = "/product/{serialNum}")
 	@GetMapping
 	public String getproduct(@PathVariable String serialNum, Model model) {
-
 		// Products
 		Product product = productService.getOne(serialNum);
 
