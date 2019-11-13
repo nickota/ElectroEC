@@ -6,7 +6,6 @@ import lombok.Value;
 
 @Value
 public class CartDTO {
-
 	private Integer userId;
 	private Product product;
 	private Integer quantity;
