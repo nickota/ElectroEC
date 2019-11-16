@@ -104,6 +104,7 @@ public class ElectroEcController {
 		for (CartItem cartItem : cartItems) {
 			totalQuantity += cartItem.getQuantity();
 		}
+
 		return totalQuantity;
 	}
 
