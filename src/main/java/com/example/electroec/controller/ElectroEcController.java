@@ -49,6 +49,7 @@ public class ElectroEcController {
 	public String store(Model model) {
 		Iterable<Product> products = productService.findAll();
 		model.addAttribute("products", products);
+
 		return "store";
 	}
 
